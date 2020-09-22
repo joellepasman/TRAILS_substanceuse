@@ -1,0 +1,18 @@
+  DATA:   
+       FILE IS \\CNAS.RU.NL\U642157\Documents\6 TRAILS\datasets\full.csv ;
+
+  VARIABLE:
+       NAMES ARE sex age C1 C2 C3 C4 C5 C6 C7 C8 C9 C10 
+         parknow pardisc parcont parsol rel_rej rel_warm
+         parsmk parcpd paralc paraddep parcan
+         prssmcpd prsalc prscan
+         eversmk dailysmk cpd ftnd alc alcmonth audit can cupit1 cupit2 ;
+       MISSING * ;
+       USEVARIABLES alc alcmonth audit ;
+       CATEGORICAL ARE alcmonth ;
+  
+    ANALYSIS: TYPE = EFA 1 1 ;
+
+    OUTPUT: 
+        SAMPSTAT  modindices(4) ;
+

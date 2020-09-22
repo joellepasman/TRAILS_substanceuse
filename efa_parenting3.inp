@@ -1,0 +1,25 @@
+  DATA:   
+       FILE IS \\CNAS.RU.NL\U642157\Documents\6 TRAILS\datasets\full.csv ;
+	   
+  VARIABLE:
+       NAMES ARE sex age C1 C2 C3 C4 C5 C6 C7 C8 C9 C10 
+         parknow pardisc parcont parsol rel_rej rel_warm
+         parsmk parcpd paralc paraddep parcan
+         prssmcpd prsalc prscan
+         eversmk dailysmk cpd ftnd alc alcmonth audit can cupit1 cupit2 ;
+       MISSING * ;
+       USEVARIABLES parknow pardisc parcont parsol rel_rej rel_warm 
+       parsmk paraddep parcan ;
+       CATEGORICAL ARE parsmk paraddep parcan ;
+    
+    !deleted parental alcohol use and parental cpd. 
+    !Alcohol use because it doesn't load on a factor, and cpd so that we 
+    !only have categorical indicators for parental substance use (and no 
+    !separation in the data due to the fact that only smoking parents (parsmk)
+    !have data on cigarettes per day
+    
+    ANALYSIS: TYPE = EFA 1 4 ;
+
+    OUTPUT: 
+        SAMPSTAT modindices(4);
+
