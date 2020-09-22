@@ -1,0 +1,63 @@
+  DATA:   
+        FILE IS \\CNAS.RU.NL\U642157\Documents\6 TRAILS\datasets\full.csv ;
+
+  VARIABLE:
+       NAMES ARE sex age C1 C2 C3 C4 C5 C6 C7 C8 C9 C10 
+       parknow pardisc parcont parsol rel_rej rel_warm 
+       parsmk parcpd paralc paraddep parcan 
+       prssmcpd prsalc prscan 
+       eversmk dailysmk cpd ftnd alc alcmonth audit can cupit1 cupit2 ;
+       MISSING * ;
+       USEVARIABLES sex age C1 C2 C3 C4 C5 C6 C7 C8 C9 C10 
+       parsmk paraddep parcan
+       prssmcpd 
+       cpd dailysmk ftnd ;
+       CATEGORICAL ARE parsmk paraddep parcan dailysmk ;
+
+    ANALYSIS: estimator=MLR  ;
+        TYPE = RANDOM ;
+        ALGORITHM = INTEGRATION ;
+    
+    MODEL:
+       !Latent factors 
+       F2sub BY parsmk paraddep parcan ;
+       Fsmk BY cpd dailysmk ftnd ;
+   
+       !Latent factor interactions
+       intsub | F2sub XWITH prssmcpd ;
+       
+       !Main effects 
+       Fsmk ON F2sub (b1) ;
+       Fsmk ON prssmcpd (b2) ;
+       Fsmk ON sex age C1 C2 C3 C4 C5 C6 C7 C8 C9 C10 ;    
+       
+       !GxE
+       Fsmk ON intsub (b3) ;
+
+       F2sub ON sex age ;
+
+!To test simple slopes create new variables
+MODEL CONSTRAINT:
+   NEW(low_mod med_mod high_mod SS_lopgs SS_mepgs SS_hipgs);
+
+   low_mod = -1;   ! moderator level -1 SD below mean 
+   med_mod = 0;   
+   high_mod = 1;   
+
+! Simple slopes for each level of the moderator
+   SS_lopgs = b1 + b3*low_mod;
+   SS_mepgs = b1 + b3*med_mod;
+   SS_hipgs= b1 + b3*high_mod;
+
+! Plot of the simple slopes
+   PLOT(lopgs mepgs hipgs);
+   LOOP(XVAL,-3,3,0.1);
+   lopgs = (b1 + b3*low_mod)*XVAL;
+   mepgs = (b1 + b3*med_mod)*XVAL;
+   hipgs = (b1 + b3*high_mod)*XVAL;
+
+PLOT:
+   TYPE = plot2;
+
+OUTPUT:
+   SAMPSTAT STAND CINTERVAL STDYX;    
