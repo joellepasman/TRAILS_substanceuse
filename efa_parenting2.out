@@ -1,0 +1,900 @@
+Mplus VERSION 8.3
+MUTHEN & MUTHEN
+03/05/2020  12:14 PM
+
+INPUT INSTRUCTIONS
+
+    DATA:
+         FILE IS \\CNAS.RU.NL\U642157\Documents\6 TRAILS\datasets\full.csv ;
+  	
+    VARIABLE:
+         NAMES ARE sex age C1 C2 C3 C4 C5 C6 C7 C8 C9 C10
+           parknow pardisc parcont parsol rel_rej rel_warm
+           parsmk parcpd paralc paraddep parcan
+           prssmcpd prsalc prscan
+           eversmk dailysmk cpd ftnd alc alcmonth audit can cupit1 cupit2 ;
+         MISSING * ;
+         USEVARIABLES parknow pardisc parcont parsol rel_rej rel_warm
+         parsmk parcpd paraddep parcan ;
+         CATEGORICAL ARE parsmk paraddep parcan ;
+
+      !Excluded parental alcohol use as it didn't load on any factor
+      ANALYSIS: TYPE = EFA 1 4 ;
+
+      OUTPUT:
+          SAMPSTAT  ;
+
+
+
+
+*** WARNING
+  Data set contains cases with missing on all variables.
+  These cases were not included in the analysis.
+  Number of cases with missing on all variables:  44
+   1 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                        1649
+
+Number of dependent variables                                   10
+Number of independent variables                                  0
+Number of continuous latent variables                            0
+
+Observed dependent variables
+
+  Continuous
+   PARKNOW     PARDISC     PARCONT     PARSOL      REL_REJ     REL_WARM
+   PARCPD
+
+  Binary and ordered categorical (ordinal)
+   PARSMK      PARADDEP    PARCAN
+
+
+Estimator                                                    WLSMV
+Rotation                                                    GEOMIN
+Row standardization                                    CORRELATION
+Type of rotation                                           OBLIQUE
+Epsilon value                                               Varies
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+Optimization Specifications for the Exploratory Factor Analysis
+Rotation Algorithm
+  Number of random starts                                       30
+  Maximum number of iterations                               10000
+  Derivative convergence criterion                       0.100D-04
+Link                                                        PROBIT
+
+Input data file(s)
+  \\CNAS.RU.NL\U642157\Documents\6 TRAILS\datasets\full.csv
+
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns            41
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT
+
+
+           Covariance Coverage
+              PARKNOW       PARDISC       PARCONT       PARSOL        REL_REJ
+              ________      ________      ________      ________      ________
+ PARKNOW        0.967
+ PARDISC        0.921         0.951
+ PARCONT        0.921         0.949         0.951
+ PARSOL         0.921         0.951         0.949         0.951
+ REL_REJ        0.961         0.947         0.947         0.947         0.994
+ REL_WARM       0.962         0.947         0.947         0.947         0.994
+ PARSMK         0.873         0.856         0.857         0.856         0.893
+ PARCPD         0.926         0.913         0.914         0.913         0.951
+ PARADDEP       0.925         0.910         0.910         0.910         0.950
+ PARCAN         0.809         0.790         0.789         0.790         0.814
+
+
+           Covariance Coverage
+              REL_WARM      PARSMK        PARCPD        PARADDEP      PARCAN
+              ________      ________      ________      ________      ________
+ REL_WARM       0.995
+ PARSMK         0.894         0.899
+ PARCPD         0.952         0.899         0.958
+ PARADDEP       0.951         0.866         0.921         0.956
+ PARCAN         0.815         0.774         0.794         0.797         0.819
+
+
+UNIVARIATE PROPORTIONS AND COUNTS FOR CATEGORICAL VARIABLES
+
+    PARSMK
+      Category 1    0.505          749.000
+      Category 2    0.495          733.000
+    PARADDEP
+      Category 1    0.930         1466.000
+      Category 2    0.070          110.000
+    PARCAN
+      Category 1    0.956         1292.000
+      Category 2    0.044           59.000
+
+
+SAMPLE STATISTICS
+
+
+     ESTIMATED SAMPLE STATISTICS
+
+
+           MEANS/INTERCEPTS/THRESHOLDS
+              PARKNOW       PARDISC       PARCONT       PARSOL        REL_REJ
+              ________      ________      ________      ________      ________
+               -0.056        -0.014         0.013        -0.008         0.020
+
+
+           MEANS/INTERCEPTS/THRESHOLDS
+              REL_WARM      PARSMK$1      PARCPD        PARADDEP      PARCAN$1
+              ________      ________      ________      ________      ________
+               -0.036         0.014        -0.030         1.477         1.710
+
+
+           CORRELATION MATRIX (WITH VARIANCES ON THE DIAGONAL)
+              PARKNOW       PARDISC       PARCONT       PARSOL        REL_REJ
+              ________      ________      ________      ________      ________
+ PARKNOW        0.958
+ PARDISC        0.331         0.984
+ PARCONT        0.237         0.309         1.005
+ PARSOL         0.223         0.456         0.506         0.974
+ REL_REJ        0.120         0.184         0.053         0.158         0.959
+ REL_WARM       0.231         0.265         0.183         0.321         0.347
+ PARSMK         0.237         0.150         0.171         0.184         0.048
+ PARCPD         0.136         0.099         0.115         0.097         0.038
+ PARADDEP       0.151         0.040         0.156         0.155         0.003
+ PARCAN         0.260         0.145         0.176         0.121         0.089
+
+
+           CORRELATION MATRIX (WITH VARIANCES ON THE DIAGONAL)
+              REL_WARM      PARSMK        PARCPD        PARADDEP      PARCAN
+              ________      ________      ________      ________      ________
+ REL_WARM       0.952
+ PARSMK         0.066
+ PARCPD         0.027         1.000         0.983
+ PARADDEP      -0.003         0.472         0.306
+ PARCAN         0.074         0.505         0.367         0.497
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     PARKNOW              -0.056       1.540      -0.867   33.19%      -0.867     -0.674     -0.480
+            1594.000       0.958       2.266       4.742    0.06%      -0.093      0.680
+     PARDISC              -0.014       0.238      -2.035    1.79%      -0.956     -0.282     -0.012
+            1568.000       0.984      -0.106       3.359    0.19%       0.257      0.797
+     PARCONT               0.013       0.134      -1.901    2.55%      -0.843     -0.313      0.005
+            1568.000       1.005      -0.581       2.334    1.28%       0.216      0.852
+     PARSOL               -0.008      -0.003      -3.076    0.19%      -0.832     -0.271      0.010
+            1568.000       0.974      -0.149       2.535    0.38%       0.291      0.852
+     REL_REJ               0.020       1.270      -1.567    0.61%      -0.741     -0.374     -0.191
+            1639.000       0.959       2.534       4.765    0.06%       0.085      0.635
+     REL_WARM             -0.036       0.726      -1.589    0.85%      -0.929     -0.490     -0.215
+            1640.000       0.952       0.158       4.017    0.06%       0.060      0.774
+     PARCPD               -0.030       0.338      -0.997   45.73%      -0.997     -0.997     -0.279
+            1579.000       0.983      -1.439       2.595    0.19%       0.440      1.158
+
+     WARNING:  THE SAMPLE CORRELATION OF PARCPD AND PARSMK IS  1.000
+     DUE TO ONE OR MORE ZERO CELLS IN THEIR BIVARIATE TABLE.
+     INFORMATION FROM THESE VARIABLES CAN BE USED TO CREATE ONE NEW VARIABLE.
+
+
+
+
+SUMMARY OF MODEL FIT INFORMATION
+
+
+                   Number of                   Degrees of
+     Model        Parameters      Chi-Square    Freedom     P-Value
+
+     1-factor          17            867.048        35       0.0000
+     2-factor          26            284.936        26       0.0000
+     3-factor          34            103.249        18       0.0000
+     4-factor          41             40.431        11       0.0000
+
+                                               Degrees of
+     Models Compared              Chi-Square    Freedom     P-Value
+
+     1-factor against 2-factor       426.683         9       0.0000
+     2-factor against 3-factor       158.613         8       0.0000
+     3-factor against 4-factor        63.115         7       0.0000
+
+
+
+RESULTS FOR EXPLORATORY FACTOR ANALYSIS
+
+
+           EIGENVALUES FOR SAMPLE CORRELATION MATRIX
+                  1             2             3             4             5
+              ________      ________      ________      ________      ________
+                3.087         1.936         1.100         0.917         0.828
+
+
+           EIGENVALUES FOR SAMPLE CORRELATION MATRIX
+                  6             7             8             9            10
+              ________      ________      ________      ________      ________
+                0.652         0.599         0.501         0.403        -0.024
+
+
+EXPLORATORY FACTOR ANALYSIS WITH 1 FACTOR(S):
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       17
+
+Chi-Square Test of Model Fit
+
+          Value                            867.048*
+          Degrees of Freedom                    35
+          P-Value                           0.0000
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference testing in the regular way.  MLM, MLR and WLSM
+    chi-square difference testing is described on the Mplus website.  MLMV, WLSMV,
+    and ULSMV difference testing is done using the DIFFTEST option.
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.120
+          90 Percent C.I.                    0.113  0.127
+          Probability RMSEA <= .05           0.000
+
+CFI/TLI
+
+          CFI                                0.540
+          TLI                                0.408
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                           1853.331
+          Degrees of Freedom                    45
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.185
+
+
+
+MINIMUM ROTATION FUNCTION VALUE       2.07636
+
+
+
+           GEOMIN ROTATED LOADINGS (* significant at 5% level)
+                  1
+              ________
+ PARKNOW        0.462*
+ PARDISC        0.596*
+ PARCONT        0.526*
+ PARSOL         0.661*
+ REL_REJ        0.287*
+ REL_WARM       0.444*
+ PARSMK         0.409*
+ PARCPD         0.270*
+ PARADDEP       0.315*
+ PARCAN         0.417*
+
+
+           GEOMIN FACTOR CORRELATIONS (* significant at 5% level)
+                  1
+              ________
+      1         1.000
+
+
+           ESTIMATED RESIDUAL VARIANCES
+              PARKNOW       PARDISC       PARCONT       PARSOL        REL_REJ
+              ________      ________      ________      ________      ________
+                0.787         0.644         0.723         0.563         0.918
+
+
+           ESTIMATED RESIDUAL VARIANCES
+              REL_WARM      PARSMK        PARCPD        PARADDEP      PARCAN
+              ________      ________      ________      ________      ________
+                0.803         0.833         0.927         0.901         0.826
+
+
+           S.E. GEOMIN ROTATED LOADINGS
+                  1
+              ________
+ PARKNOW        0.025
+ PARDISC        0.024
+ PARCONT        0.024
+ PARSOL         0.021
+ REL_REJ        0.028
+ REL_WARM       0.025
+ PARSMK         0.036
+ PARCPD         0.029
+ PARADDEP       0.056
+ PARCAN         0.068
+
+
+           S.E. GEOMIN FACTOR CORRELATIONS
+                  1
+              ________
+      1         0.000
+
+
+           S.E. ESTIMATED RESIDUAL VARIANCES
+              PARKNOW       PARDISC       PARCONT       PARSOL        REL_REJ
+              ________      ________      ________      ________      ________
+                0.024         0.028         0.026         0.028         0.016
+
+
+           S.E. ESTIMATED RESIDUAL VARIANCES
+              REL_WARM      PARSMK        PARCPD        PARADDEP      PARCAN
+              ________      ________      ________      ________      ________
+                0.022         0.029         0.016         0.035         0.057
+
+
+           Est./S.E. GEOMIN ROTATED LOADINGS
+                  1
+              ________
+ PARKNOW       18.121
+ PARDISC       24.969
+ PARCONT       21.540
+ PARSOL        30.860
+ REL_REJ       10.395
+ REL_WARM      18.003
+ PARSMK        11.483
+ PARCPD         9.337
+ PARADDEP       5.673
+ PARCAN         6.125
+
+
+           Est./S.E. GEOMIN FACTOR CORRELATIONS
+                  1
+              ________
+      1         0.000
+
+
+           Est./S.E. ESTIMATED RESIDUAL VARIANCES
+              PARKNOW       PARDISC       PARCONT       PARSOL        REL_REJ
+              ________      ________      ________      ________      ________
+               33.407        22.618        28.122        19.888        58.006
+
+
+           Est./S.E. ESTIMATED RESIDUAL VARIANCES
+              REL_WARM      PARSMK        PARCPD        PARADDEP      PARCAN
+              ________      ________      ________      ________      ________
+               36.750        28.629        59.282        25.728        14.517
+
+
+EXPLORATORY FACTOR ANALYSIS WITH 2 FACTOR(S):
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       26
+
+Chi-Square Test of Model Fit
+
+          Value                            284.936*
+          Degrees of Freedom                    26
+          P-Value                           0.0000
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference testing in the regular way.  MLM, MLR and WLSM
+    chi-square difference testing is described on the Mplus website.  MLMV, WLSMV,
+    and ULSMV difference testing is done using the DIFFTEST option.
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.078
+          90 Percent C.I.                    0.070  0.086
+          Probability RMSEA <= .05           0.000
+
+CFI/TLI
+
+          CFI                                0.857
+          TLI                                0.752
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                           1853.331
+          Degrees of Freedom                    45
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.068
+
+
+
+MINIMUM ROTATION FUNCTION VALUE       0.28261
+
+
+
+           GEOMIN ROTATED LOADINGS (* significant at 5% level)
+                  1             2
+              ________      ________
+ PARKNOW        0.405*        0.114*
+ PARDISC        0.626*       -0.001
+ PARCONT        0.508*        0.053*
+ PARSOL         0.696*        0.000
+ REL_REJ        0.322*       -0.037
+ REL_WARM       0.512*       -0.068*
+ PARSMK         0.003*        1.170*
+ PARCPD        -0.030         0.836*
+ PARADDEP       0.080         0.408*
+ PARCAN         0.172*        0.447*
+
+
+           GEOMIN FACTOR CORRELATIONS (* significant at 5% level)
+                  1             2
+              ________      ________
+      1         1.000
+      2         0.213*        1.000
+
+
+           ESTIMATED RESIDUAL VARIANCES
+              PARKNOW       PARDISC       PARCONT       PARSOL        REL_REJ
+              ________      ________      ________      ________      ________
+                0.803         0.608         0.728         0.516         0.900
+
+
+           ESTIMATED RESIDUAL VARIANCES
+              REL_WARM      PARSMK        PARCPD        PARADDEP      PARCAN
+              ________      ________      ________      ________      ________
+                0.748        -0.371         0.311         0.813         0.738
+
+
+           S.E. GEOMIN ROTATED LOADINGS
+                  1             2
+              ________      ________
+ PARKNOW        0.026         0.028
+ PARDISC        0.023         0.017
+ PARCONT        0.026         0.027
+ PARSOL         0.020         0.014
+ REL_REJ        0.028         0.029
+ REL_WARM       0.024         0.029
+ PARSMK         0.001         0.038
+ PARCPD         0.017         0.029
+ PARADDEP       0.060         0.051
+ PARCAN         0.075         0.065
+
+
+           S.E. GEOMIN FACTOR CORRELATIONS
+                  1             2
+              ________      ________
+      1         0.000
+      2         0.035         0.000
+
+
+           S.E. ESTIMATED RESIDUAL VARIANCES
+              PARKNOW       PARDISC       PARCONT       PARSOL        REL_REJ
+              ________      ________      ________      ________      ________
+                0.022         0.028         0.025         0.028         0.017
+
+
+           S.E. ESTIMATED RESIDUAL VARIANCES
+              REL_WARM      PARSMK        PARCPD        PARADDEP      PARCAN
+              ________      ________      ________      ________      ________
+                0.023         0.088         0.045         0.041         0.061
+
+
+           Est./S.E. GEOMIN ROTATED LOADINGS
+                  1             2
+              ________      ________
+ PARKNOW       15.741         4.078
+ PARDISC       27.165        -0.037
+ PARCONT       19.695         2.010
+ PARSOL        34.058        -0.015
+ REL_REJ       11.721        -1.263
+ REL_WARM      20.971        -2.323
+ PARSMK         2.980        30.967
+ PARCPD        -1.740        28.892
+ PARADDEP       1.324         7.941
+ PARCAN         2.287         6.868
+
+
+           Est./S.E. GEOMIN FACTOR CORRELATIONS
+                  1             2
+              ________      ________
+      1         0.000
+      2         6.041         0.000
+
+
+           Est./S.E. ESTIMATED RESIDUAL VARIANCES
+              PARKNOW       PARDISC       PARCONT       PARSOL        REL_REJ
+              ________      ________      ________      ________      ________
+               37.104        21.662        29.028        18.704        53.268
+
+
+           Est./S.E. ESTIMATED RESIDUAL VARIANCES
+              REL_WARM      PARSMK        PARCPD        PARADDEP      PARCAN
+              ________      ________      ________      ________      ________
+               31.903        -4.205         6.899        19.634        12.175
+
+
+           FACTOR STRUCTURE
+                  1             2
+              ________      ________
+ PARKNOW        0.429         0.201
+ PARDISC        0.626         0.133
+ PARCONT        0.519         0.162
+ PARSOL         0.696         0.148
+ REL_REJ        0.315         0.032
+ REL_WARM       0.497         0.041
+ PARSMK         0.252         1.171
+ PARCPD         0.149         0.829
+ PARADDEP       0.167         0.425
+ PARCAN         0.267         0.484
+
+
+EXPLORATORY FACTOR ANALYSIS WITH 3 FACTOR(S):
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       34
+
+Chi-Square Test of Model Fit
+
+          Value                            103.249*
+          Degrees of Freedom                    18
+          P-Value                           0.0000
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference testing in the regular way.  MLM, MLR and WLSM
+    chi-square difference testing is described on the Mplus website.  MLMV, WLSMV,
+    and ULSMV difference testing is done using the DIFFTEST option.
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.054
+          90 Percent C.I.                    0.044  0.064
+          Probability RMSEA <= .05           0.262
+
+CFI/TLI
+
+          CFI                                0.953
+          TLI                                0.882
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                           1853.331
+          Degrees of Freedom                    45
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.053
+
+
+
+MINIMUM ROTATION FUNCTION VALUE       0.19966
+
+
+
+           GEOMIN ROTATED LOADINGS (* significant at 5% level)
+                  1             2             3
+              ________      ________      ________
+ PARKNOW        0.311*        0.129*        0.140*
+ PARDISC        0.524*        0.012         0.147*
+ PARCONT        0.691*        0.000        -0.157*
+ PARSOL         0.761*       -0.031         0.005
+ REL_REJ       -0.001         0.033         0.530*
+ REL_WARM       0.198*       -0.009         0.568*
+ PARSMK         0.002         1.173*        0.002
+ PARCPD        -0.031         0.839*        0.000
+ PARADDEP       0.169*        0.384*       -0.119
+ PARCAN         0.167*        0.444*        0.010
+
+
+           GEOMIN FACTOR CORRELATIONS (* significant at 5% level)
+                  1             2             3
+              ________      ________      ________
+      1         1.000
+      2         0.225*        1.000
+      3         0.360*        0.025         1.000
+
+
+           ESTIMATED RESIDUAL VARIANCES
+              PARKNOW       PARDISC       PARCONT       PARSOL        REL_REJ
+              ________      ________      ________      ________      ________
+                0.817         0.645         0.576         0.427         0.718
+
+
+           ESTIMATED RESIDUAL VARIANCES
+              REL_WARM      PARSMK        PARCPD        PARADDEP      PARCAN
+              ________      ________      ________      ________      ________
+                0.558        -0.378         0.307         0.797         0.740
+
+
+           S.E. GEOMIN ROTATED LOADINGS
+                  1             2             3
+              ________      ________      ________
+ PARKNOW        0.034         0.027         0.039
+ PARDISC        0.032         0.022         0.043
+ PARCONT        0.039         0.009         0.052
+ PARSOL         0.028         0.027         0.025
+ REL_REJ        0.009         0.030         0.047
+ REL_WARM       0.062         0.007         0.069
+ PARSMK         0.004         0.039         0.026
+ PARCPD         0.019         0.030         0.021
+ PARADDEP       0.074         0.052         0.074
+ PARCAN         0.080         0.065         0.074
+
+
+           S.E. GEOMIN FACTOR CORRELATIONS
+                  1             2             3
+              ________      ________      ________
+      1         0.000
+      2         0.036         0.000
+      3         0.073         0.051         0.000
+
+
+           S.E. ESTIMATED RESIDUAL VARIANCES
+              PARKNOW       PARDISC       PARCONT       PARSOL        REL_REJ
+              ________      ________      ________      ________      ________
+                0.020         0.025         0.036         0.035         0.051
+
+
+           S.E. ESTIMATED RESIDUAL VARIANCES
+              REL_WARM      PARSMK        PARCPD        PARADDEP      PARCAN
+              ________      ________      ________      ________      ________
+                0.057         0.091         0.047         0.046         0.060
+
+
+           Est./S.E. GEOMIN ROTATED LOADINGS
+                  1             2             3
+              ________      ________      ________
+ PARKNOW        9.156         4.754         3.585
+ PARDISC       16.525         0.524         3.429
+ PARCONT       17.722         0.025        -2.995
+ PARSOL        27.460        -1.148         0.212
+ REL_REJ       -0.094         1.114        11.166
+ REL_WARM       3.183        -1.231         8.247
+ PARSMK         0.508        30.003         0.059
+ PARCPD        -1.674        28.012         0.004
+ PARADDEP       2.284         7.383        -1.613
+ PARCAN         2.088         6.856         0.137
+
+
+           Est./S.E. GEOMIN FACTOR CORRELATIONS
+                  1             2             3
+              ________      ________      ________
+      1         0.000
+      2         6.158         0.000
+      3         4.914         0.489         0.000
+
+
+           Est./S.E. ESTIMATED RESIDUAL VARIANCES
+              PARKNOW       PARDISC       PARCONT       PARSOL        REL_REJ
+              ________      ________      ________      ________      ________
+               40.061        25.945        16.200        12.327        14.048
+
+
+           Est./S.E. ESTIMATED RESIDUAL VARIANCES
+              REL_WARM      PARSMK        PARCPD        PARADDEP      PARCAN
+              ________      ________      ________      ________      ________
+                9.713        -4.148         6.570        17.177        12.298
+
+
+           FACTOR STRUCTURE
+                  1             2             3
+              ________      ________      ________
+ PARKNOW        0.390         0.202         0.255
+ PARDISC        0.580         0.133         0.336
+ PARCONT        0.635         0.152         0.092
+ PARSOL         0.756         0.140         0.279
+ REL_REJ        0.197         0.046         0.530
+ REL_WARM       0.400         0.049         0.639
+ PARSMK         0.266         1.174         0.031
+ PARCPD         0.158         0.832         0.010
+ PARADDEP       0.213         0.420        -0.049
+ PARCAN         0.271         0.482         0.081
+
+
+EXPLORATORY FACTOR ANALYSIS WITH 4 FACTOR(S):
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       41
+
+Chi-Square Test of Model Fit
+
+          Value                             40.431*
+          Degrees of Freedom                    11
+          P-Value                           0.0000
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference testing in the regular way.  MLM, MLR and WLSM
+    chi-square difference testing is described on the Mplus website.  MLMV, WLSMV,
+    and ULSMV difference testing is done using the DIFFTEST option.
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.040
+          90 Percent C.I.                    0.027  0.054
+          Probability RMSEA <= .05           0.873
+
+CFI/TLI
+
+          CFI                                0.984
+          TLI                                0.933
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                           1853.331
+          Degrees of Freedom                    45
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.044
+
+
+
+MINIMUM ROTATION FUNCTION VALUE       0.34120
+
+
+
+           GEOMIN ROTATED LOADINGS (* significant at 5% level)
+                  1             2             3             4
+              ________      ________      ________      ________
+ PARKNOW        0.716*        0.008        -0.008         0.036
+ PARDISC        0.273*       -0.008         0.359*        0.133*
+ PARCONT        0.160         0.025         0.518*       -0.083*
+ PARSOL        -0.050         0.000         0.940*        0.023
+ REL_REJ       -0.023         0.042        -0.020         0.629*
+ REL_WARM       0.107        -0.020         0.162*        0.493*
+ PARSMK         0.004         1.163*        0.004         0.013
+ PARCPD        -0.035         0.859*       -0.019         0.020
+ PARADDEP       0.136         0.368*        0.081        -0.118
+ PARCAN         0.288*        0.397*       -0.003        -0.022
+
+
+           GEOMIN FACTOR CORRELATIONS (* significant at 5% level)
+                  1             2             3             4
+              ________      ________      ________      ________
+      1         1.000
+      2         0.257*        1.000
+      3         0.372*        0.168*        1.000
+      4         0.261*        0.013         0.291*        1.000
+
+
+           ESTIMATED RESIDUAL VARIANCES
+              PARKNOW       PARDISC       PARCONT       PARSOL        REL_REJ
+              ________      ________      ________      ________      ________
+                0.473         0.661         0.662         0.136         0.617
+
+
+           ESTIMATED RESIDUAL VARIANCES
+              REL_WARM      PARSMK        PARCPD        PARADDEP      PARCAN
+              ________      ________      ________      ________      ________
+                0.635        -0.357         0.282         0.797         0.705
+
+
+           S.E. GEOMIN ROTATED LOADINGS
+                  1             2             3             4
+              ________      ________      ________      ________
+ PARKNOW        0.150         0.019         0.028         0.054
+ PARDISC        0.122         0.024         0.081         0.046
+ PARCONT        0.104         0.023         0.088         0.037
+ PARSOL         0.044         0.015         0.058         0.014
+ REL_REJ        0.015         0.021         0.019         0.091
+ REL_WARM       0.085         0.019         0.066         0.102
+ PARSMK         0.014         0.046         0.018         0.019
+ PARCPD         0.020         0.035         0.019         0.016
+ PARADDEP       0.082         0.056         0.073         0.069
+ PARCAN         0.100         0.072         0.067         0.072
+
+
+           S.E. GEOMIN FACTOR CORRELATIONS
+                  1             2             3             4
+              ________      ________      ________      ________
+      1         0.000
+      2         0.043         0.000
+      3         0.046         0.050         0.000
+      4         0.080         0.047         0.071         0.000
+
+
+           S.E. ESTIMATED RESIDUAL VARIANCES
+              PARKNOW       PARDISC       PARCONT       PARSOL        REL_REJ
+              ________      ________      ________      ________      ________
+                0.202         0.030         0.037         0.133         0.118
+
+
+           S.E. ESTIMATED RESIDUAL VARIANCES
+              REL_WARM      PARSMK        PARCPD        PARADDEP      PARCAN
+              ________      ________      ________      ________      ________
+                0.072         0.101         0.055         0.046         0.066
+
+
+           Est./S.E. GEOMIN ROTATED LOADINGS
+                  1             2             3             4
+              ________      ________      ________      ________
+ PARKNOW        4.765         0.431        -0.273         0.672
+ PARDISC        2.235        -0.347         4.446         2.868
+ PARCONT        1.543         1.107         5.882        -2.226
+ PARSOL        -1.159         0.014        16.079         1.670
+ REL_REJ       -1.506         1.958        -1.060         6.884
+ REL_WARM       1.269        -1.057         2.437         4.847
+ PARSMK         0.265        25.497         0.237         0.711
+ PARCPD        -1.757        24.449        -1.004         1.221
+ PARADDEP       1.647         6.621         1.113        -1.711
+ PARCAN         2.868         5.481        -0.040        -0.308
+
+
+           Est./S.E. GEOMIN FACTOR CORRELATIONS
+                  1             2             3             4
+              ________      ________      ________      ________
+      1         0.000
+      2         5.979         0.000
+      3         8.070         3.390         0.000
+      4         3.275         0.276         4.124         0.000
+
+
+           Est./S.E. ESTIMATED RESIDUAL VARIANCES
+              PARKNOW       PARDISC       PARCONT       PARSOL        REL_REJ
+              ________      ________      ________      ________      ________
+                2.342        22.341        17.719         1.019         5.215
+
+
+           Est./S.E. ESTIMATED RESIDUAL VARIANCES
+              REL_WARM      PARSMK        PARCPD        PARADDEP      PARCAN
+              ________      ________      ________      ________      ________
+                8.776        -3.550         5.152        17.484        10.741
+
+
+           FACTOR STRUCTURE
+                  1             2             3             4
+              ________      ________      ________      ________
+ PARKNOW        0.725         0.192         0.271         0.221
+ PARDISC        0.440         0.124         0.498         0.309
+ PARCONT        0.338         0.152         0.558         0.110
+ PARSOL         0.306         0.146         0.928         0.284
+ REL_REJ        0.145         0.041         0.162         0.618
+ REL_WARM       0.291         0.041         0.342         0.567
+ PARSMK         0.308         1.165         0.205         0.031
+ PARCPD         0.184         0.847         0.118         0.016
+ PARADDEP       0.230         0.415         0.159        -0.054
+ PARCAN         0.383         0.470         0.165         0.057
+
+
+DIAGRAM INFORMATION
+
+  Mplus diagrams are currently not available for EFA.
+  No diagram output was produced.
+
+
+     Beginning Time:  12:14:13
+        Ending Time:  12:14:16
+       Elapsed Time:  00:00:03
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2019 Muthen & Muthen

@@ -1,0 +1,209 @@
+Mplus VERSION 8.3
+MUTHEN & MUTHEN
+03/05/2020  10:42 AM
+
+INPUT INSTRUCTIONS
+
+    DATA:
+         FILE IS \\CNAS.RU.NL\U642157\Documents\6 TRAILS\datasets\full.csv ;
+
+    VARIABLE:
+         NAMES ARE sex age C1 C2 C3 C4 C5 C6 C7 C8 C9 C10
+           parknow pardisc parcont parsol rel_rej rel_warm
+           parsmk parcpd paralc paraddep parcan
+           prssmcpd prsalc prscan
+           eversmk dailysmk cpd ftnd alc alcmonth audit can cupit1 cupit2 ;
+         MISSING * ;
+         USEVARIABLES can cupit1 cupit2 ;
+         CATEGORICAL ARE can ;
+
+      ANALYSIS: TYPE = EFA 1 1 ;
+
+      OUTPUT:
+          SAMPSTAT  modindices(4) ;
+
+
+
+
+*** WARNING
+  Data set contains cases with missing on all variables.
+  These cases were not included in the analysis.
+  Number of cases with missing on all variables:  394
+   1 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                        1299
+
+Number of dependent variables                                    3
+Number of independent variables                                  0
+Number of continuous latent variables                            0
+
+Observed dependent variables
+
+  Continuous
+   CUPIT1      CUPIT2
+
+  Binary and ordered categorical (ordinal)
+   CAN
+
+
+Estimator                                                    WLSMV
+Rotation                                                    GEOMIN
+Row standardization                                    CORRELATION
+Type of rotation                                           OBLIQUE
+Epsilon value                                               Varies
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+Optimization Specifications for the Exploratory Factor Analysis
+Rotation Algorithm
+  Number of random starts                                       30
+  Maximum number of iterations                               10000
+  Derivative convergence criterion                       0.100D-04
+Link                                                        PROBIT
+
+Input data file(s)
+  \\CNAS.RU.NL\U642157\Documents\6 TRAILS\datasets\full.csv
+
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns             3
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT
+
+
+           Covariance Coverage
+              CAN           CUPIT1        CUPIT2
+              ________      ________      ________
+ CAN            1.000
+ CUPIT1         0.349         0.349
+ CUPIT2         0.348         0.348         0.348
+
+
+UNIVARIATE PROPORTIONS AND COUNTS FOR CATEGORICAL VARIABLES
+
+    CAN
+      Category 1    0.412          535.000
+      Category 2    0.588          764.000
+
+
+SAMPLE STATISTICS
+
+
+     ESTIMATED SAMPLE STATISTICS
+
+
+           MEANS/INTERCEPTS/THRESHOLDS
+              CAN$1         CUPIT1        CUPIT2
+              ________      ________      ________
+               -0.223        -0.040        -0.041
+
+
+           CORRELATION MATRIX (WITH VARIANCES ON THE DIAGONAL)
+              CAN           CUPIT1        CUPIT2
+              ________      ________      ________
+ CAN
+ CUPIT1         0.000         0.893
+ CUPIT2         0.000         0.685         0.931
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     CUPIT1               -0.040       1.394      -0.964    0.22%      -0.762     -0.559     -0.458
+             453.000       0.893       0.937       3.183    0.22%      -0.256      0.654
+     CUPIT2               -0.041       1.914      -0.678   49.12%      -0.678     -0.678     -0.336
+             452.000       0.931       3.433       4.102    0.44%      -0.336      0.688
+
+
+     STANDARD ERRORS COULD NOT BE COMPUTED IN EXPLORATORY FACTOR ANALYSIS
+     WITH 1 FACTOR(S).
+
+
+     CHI-SQUARE TEST COULD NOT BE COMPUTED.
+     PROBLEM OCCURRED IN EXPLORATORY FACTOR ANALYSIS WITH 1 FACTOR(S).
+
+
+
+
+RESULTS FOR EXPLORATORY FACTOR ANALYSIS
+
+
+           EIGENVALUES FOR SAMPLE CORRELATION MATRIX
+                  1             2             3
+              ________      ________      ________
+                1.685         1.000         0.315
+
+
+EXPLORATORY FACTOR ANALYSIS WITH 1 FACTOR(S):
+
+
+
+MINIMUM ROTATION FUNCTION VALUE       1.37055
+
+
+
+           GEOMIN ROTATED LOADINGS
+                  1
+              ________
+ CAN            0.000
+ CUPIT1         0.828
+ CUPIT2         0.828
+
+
+           GEOMIN FACTOR CORRELATIONS
+                  1
+              ________
+      1         1.000
+
+
+           ESTIMATED RESIDUAL VARIANCES
+              CAN           CUPIT1        CUPIT2
+              ________      ________      ________
+                1.000         0.315         0.315
+
+
+MODIFICATION INDICES
+
+
+     MODIFICATION INDICES FOR ANALYSIS WITH 1 FACTOR(S)
+
+
+
+     Beginning Time:  10:42:35
+        Ending Time:  10:42:36
+       Elapsed Time:  00:00:01
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2019 Muthen & Muthen

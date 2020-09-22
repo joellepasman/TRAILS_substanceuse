@@ -1,0 +1,311 @@
+Mplus VERSION 8.3
+MUTHEN & MUTHEN
+03/05/2020  10:42 AM
+
+INPUT INSTRUCTIONS
+
+    DATA:
+         FILE IS \\CNAS.RU.NL\U642157\Documents\6 TRAILS\datasets\full.csv ;
+  	
+    VARIABLE:
+         NAMES ARE sex age C1 C2 C3 C4 C5 C6 C7 C8 C9 C10
+           parknow pardisc parcont parsol rel_rej rel_warm
+           parsmk parcpd paralc paraddep parcan
+           prssmcpd prsalc prscan
+           eversmk dailysmk cpd ftnd alc alcmonth audit can cupit1 cupit2 ;
+         MISSING * ;
+         USEVARIABLES eversmk dailysmk cpd ftnd ;
+         CATEGORICAL ARE dailysmk ;
+
+      ANALYSIS: TYPE = EFA 1 1 ;
+
+      OUTPUT:
+          SAMPSTAT modindices(4);
+
+
+
+
+*** WARNING
+  Data set contains cases with missing on all variables.
+  These cases were not included in the analysis.
+  Number of cases with missing on all variables:  378
+   1 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                        1315
+
+Number of dependent variables                                    4
+Number of independent variables                                  0
+Number of continuous latent variables                            0
+
+Observed dependent variables
+
+  Continuous
+   EVERSMK     CPD         FTND
+
+  Binary and ordered categorical (ordinal)
+   DAILYSMK
+
+
+Estimator                                                    WLSMV
+Rotation                                                    GEOMIN
+Row standardization                                    CORRELATION
+Type of rotation                                           OBLIQUE
+Epsilon value                                               Varies
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+Optimization Specifications for the Exploratory Factor Analysis
+Rotation Algorithm
+  Number of random starts                                       30
+  Maximum number of iterations                               10000
+  Derivative convergence criterion                       0.100D-04
+Link                                                        PROBIT
+
+Input data file(s)
+  \\CNAS.RU.NL\U642157\Documents\6 TRAILS\datasets\full.csv
+
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns             2
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT
+
+
+           Covariance Coverage
+              EVERSMK       DAILYSMK      CPD           FTND
+              ________      ________      ________      ________
+ EVERSMK        1.000
+ DAILYSMK       1.000         1.000
+ CPD            0.402         0.402         0.402
+ FTND           1.000         1.000         0.402         1.000
+
+
+UNIVARIATE PROPORTIONS AND COUNTS FOR CATEGORICAL VARIABLES
+
+    DAILYSMK
+      Category 1    0.758          997.000
+      Category 2    0.242          318.000
+
+
+SAMPLE STATISTICS
+
+
+     ESTIMATED SAMPLE STATISTICS
+
+
+           MEANS/INTERCEPTS/THRESHOLDS
+              EVERSMK       DAILYSMK      CPD           FTND
+              ________      ________      ________      ________
+                0.756         0.700        -0.068        -0.023
+
+
+           CORRELATION MATRIX (WITH VARIANCES ON THE DIAGONAL)
+              EVERSMK       DAILYSMK      CPD           FTND
+              ________      ________      ________      ________
+ EVERSMK        0.185
+ DAILYSMK       0.930
+ CPD            0.000         0.674         1.017
+ FTND           0.257         0.782         0.563         0.971
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     EVERSMK               0.756      -1.191       0.000   24.41%       0.000      1.000      1.000
+            1315.000       0.185      -0.580       1.000   75.59%       1.000      1.000
+     CPD                  -0.068       0.076      -1.337   28.60%      -1.337     -0.568      0.201
+             528.000       1.017      -1.308       1.740    6.44%       0.201      0.971
+     FTND                 -0.023       2.416      -0.469   77.34%      -0.469     -0.469     -0.469
+            1315.000       0.971       5.428       5.452    0.08%      -0.469      0.123
+
+     WARNING:  VARIABLE EVERSMK MAY BE DICHOTOMOUS BUT DECLARED AS CONTINUOUS.
+
+
+
+
+RESULTS FOR EXPLORATORY FACTOR ANALYSIS
+
+
+           EIGENVALUES FOR SAMPLE CORRELATION MATRIX
+                  1             2             3             4
+              ________      ________      ________      ________
+                2.687         1.102         0.400        -0.189
+
+
+EXPLORATORY FACTOR ANALYSIS WITH 1 FACTOR(S):
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                        7
+
+Chi-Square Test of Model Fit
+
+          Value                            290.653*
+          Degrees of Freedom                     2
+          P-Value                           0.0000
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference testing in the regular way.  MLM, MLR and WLSM
+    chi-square difference testing is described on the Mplus website.  MLMV, WLSMV,
+    and ULSMV difference testing is done using the DIFFTEST option.
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.331
+          90 Percent C.I.                    0.300  0.364
+          Probability RMSEA <= .05           0.000
+
+CFI/TLI
+
+          CFI                                0.774
+          TLI                                0.322
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                           1283.570
+          Degrees of Freedom                     6
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.177
+
+
+
+MINIMUM ROTATION FUNCTION VALUE       3.13465
+
+
+
+           GEOMIN ROTATED LOADINGS (* significant at 5% level)
+                  1
+              ________
+ EVERSMK        0.560*
+ DAILYSMK       1.505*
+ CPD            0.520*
+ FTND           0.533*
+
+
+           GEOMIN FACTOR CORRELATIONS (* significant at 5% level)
+                  1
+              ________
+      1         1.000
+
+
+           ESTIMATED RESIDUAL VARIANCES
+              EVERSMK       DAILYSMK      CPD           FTND
+              ________      ________      ________      ________
+                0.686        -1.266         0.730         0.716
+
+
+           S.E. GEOMIN ROTATED LOADINGS
+                  1
+              ________
+ EVERSMK        0.015
+ DAILYSMK       0.047
+ CPD            0.021
+ FTND           0.023
+
+
+           S.E. GEOMIN FACTOR CORRELATIONS
+                  1
+              ________
+      1         0.000
+
+
+           S.E. ESTIMATED RESIDUAL VARIANCES
+              EVERSMK       DAILYSMK      CPD           FTND
+              ________      ________      ________      ________
+                0.017         0.141         0.022         0.024
+
+
+           Est./S.E. GEOMIN ROTATED LOADINGS
+                  1
+              ________
+ EVERSMK       37.372
+ DAILYSMK      32.246
+ CPD           24.654
+ FTND          23.562
+
+
+           Est./S.E. GEOMIN FACTOR CORRELATIONS
+                  1
+              ________
+      1         0.000
+
+
+           Est./S.E. ESTIMATED RESIDUAL VARIANCES
+              EVERSMK       DAILYSMK      CPD           FTND
+              ________      ________      ________      ________
+               40.882        -9.008        33.279        29.684
+
+
+MODIFICATION INDICES
+
+
+     MODIFICATION INDICES FOR ANALYSIS WITH 1 FACTOR(S)
+
+
+
+     MODIFICATION INDICES
+
+
+           THETA
+              EVERSMK       DAILYSMK      CPD           FTND
+              ________      ________      ________      ________
+ EVERSMK        0.000
+ DAILYSMK     260.786         0.000
+ CPD           71.027        87.630         0.000
+ FTND          87.658        70.978       260.813         0.000
+
+
+     EXPECTED PARAMETER CHANGE
+
+
+           THETA
+              EVERSMK       DAILYSMK      CPD           FTND
+              ________      ________      ________      ________
+ EVERSMK        0.000
+ DAILYSMK       0.547         0.000
+ CPD           -0.144        -0.627         0.000
+ FTND          -0.100        -0.900         0.416         0.000
+
+
+     Beginning Time:  10:42:41
+        Ending Time:  10:42:41
+       Elapsed Time:  00:00:00
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2019 Muthen & Muthen
