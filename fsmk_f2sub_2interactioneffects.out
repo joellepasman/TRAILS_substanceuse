@@ -1,0 +1,733 @@
+Mplus VERSION 8.3
+MUTHEN & MUTHEN
+03/05/2020  11:38 AM
+
+INPUT INSTRUCTIONS
+
+    DATA:
+          FILE IS \\CNAS.RU.NL\U642157\Documents\6 TRAILS\datasets\full.csv ;
+
+    VARIABLE:
+         NAMES ARE sex age C1 C2 C3 C4 C5 C6 C7 C8 C9 C10
+         parknow pardisc parcont parsol rel_rej rel_warm
+         parsmk parcpd paralc paraddep parcan
+         prssmcpd prsalc prscan
+         eversmk dailysmk cpd ftnd alc alcmonth audit can cupit1 cupit2 ;
+         MISSING * ;
+         USEVARIABLES sex age C1 C2 C3 C4 C5 C6 C7 C8 C9 C10
+         parsmk paraddep parcan
+         prssmcpd
+         cpd dailysmk ftnd ;
+         CATEGORICAL ARE parsmk paraddep parcan dailysmk ;
+
+      ANALYSIS: estimator=MLR  ;
+          TYPE = RANDOM ;
+          ALGORITHM = INTEGRATION ;
+
+      MODEL:
+         !Latent factors
+         F2sub BY parsmk paraddep parcan ;
+         Fsmk BY cpd dailysmk ftnd ;
+
+         !Latent factor interactions
+         intsub | F2sub XWITH prssmcpd ;
+
+         !Main effects
+         Fsmk ON F2sub prssmcpd ;
+         Fsmk ON sex age C1 C2 C3 C4 C5 C6 C7 C8 C9 C10 ;
+
+         !GxE
+         Fsmk ON intsub ;
+
+         F2sub ON sex age ;
+
+
+       OUTPUT:
+         SAMPSTAT CINTERVAL stdyx ;
+
+
+
+
+*** WARNING
+  Data set contains cases with missing on x-variables.
+  These cases were not included in the analysis.
+  Number of cases with missing on x-variables:  44
+*** WARNING
+  Data set contains cases with missing on all variables except
+  x-variables.  These cases were not included in the analysis.
+  Number of cases with missing on all variables except x-variables:  5
+   2 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                        1644
+
+Number of dependent variables                                    6
+Number of independent variables                                 13
+Number of continuous latent variables                            3
+
+Observed dependent variables
+
+  Continuous
+   CPD         FTND
+
+  Binary and ordered categorical (ordinal)
+   PARSMK      PARADDEP    PARCAN      DAILYSMK
+
+Observed independent variables
+   SEX         AGE         C1          C2          C3          C4
+   C5          C6          C7          C8          C9          C10
+   PRSSMCPD
+
+Continuous latent variables
+   F2SUB       FSMK        INTSUB
+
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Optimization Specifications for the Quasi-Newton Algorithm for
+Continuous Outcomes
+  Maximum number of iterations                                 100
+  Convergence criterion                                  0.100D-05
+Optimization Specifications for the EM Algorithm
+  Maximum number of iterations                                 500
+  Convergence criteria
+    Loglikelihood change                                 0.100D-02
+    Relative loglikelihood change                        0.100D-05
+    Derivative                                           0.100D-02
+Optimization Specifications for the M step of the EM Algorithm for
+Categorical Latent variables
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-02
+  Basis for M step termination                           ITERATION
+Optimization Specifications for the M step of the EM Algorithm for
+Censored, Binary or Ordered Categorical (Ordinal), Unordered
+Categorical (Nominal) and Count Outcomes
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-02
+  Basis for M step termination                           ITERATION
+  Maximum value for logit thresholds                            15
+  Minimum value for logit thresholds                           -15
+  Minimum expected cell size for chi-square              0.100D-01
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+Optimization algorithm                                         EMA
+Integration Specifications
+  Type                                                    STANDARD
+  Number of integration points                                  15
+  Dimensions of numerical integration                            2
+  Adaptive quadrature                                           ON
+Link                                                         LOGIT
+Cholesky                                                       OFF
+
+Input data file(s)
+  \\CNAS.RU.NL\U642157\Documents\6 TRAILS\datasets\full.csv
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns            21
+     Number of y missing data patterns           3
+     Number of u missing data patterns          14
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT
+
+
+           Covariance Coverage
+              PARSMK        PARADDEP      PARCAN        DAILYSMK      CPD
+              ________      ________      ________      ________      ________
+ PARSMK         0.901
+ PARADDEP       0.869         0.959
+ PARCAN         0.776         0.799         0.822
+ DAILYSMK       0.725         0.769         0.679         0.800
+ CPD            0.291         0.310         0.268         0.321         0.321
+ FTND           0.725         0.769         0.679         0.800         0.321
+ SEX            0.901         0.959         0.822         0.800         0.321
+ AGE            0.901         0.959         0.822         0.800         0.321
+ C1             0.901         0.959         0.822         0.800         0.321
+ C2             0.901         0.959         0.822         0.800         0.321
+ C3             0.901         0.959         0.822         0.800         0.321
+ C4             0.901         0.959         0.822         0.800         0.321
+ C5             0.901         0.959         0.822         0.800         0.321
+ C6             0.901         0.959         0.822         0.800         0.321
+ C7             0.901         0.959         0.822         0.800         0.321
+ C8             0.901         0.959         0.822         0.800         0.321
+ C9             0.901         0.959         0.822         0.800         0.321
+ C10            0.901         0.959         0.822         0.800         0.321
+ PRSSMCPD       0.901         0.959         0.822         0.800         0.321
+
+
+           Covariance Coverage
+              FTND          SEX           AGE           C1            C2
+              ________      ________      ________      ________      ________
+ FTND           0.800
+ SEX            0.800         1.000
+ AGE            0.800         1.000         1.000
+ C1             0.800         1.000         1.000         1.000
+ C2             0.800         1.000         1.000         1.000         1.000
+ C3             0.800         1.000         1.000         1.000         1.000
+ C4             0.800         1.000         1.000         1.000         1.000
+ C5             0.800         1.000         1.000         1.000         1.000
+ C6             0.800         1.000         1.000         1.000         1.000
+ C7             0.800         1.000         1.000         1.000         1.000
+ C8             0.800         1.000         1.000         1.000         1.000
+ C9             0.800         1.000         1.000         1.000         1.000
+ C10            0.800         1.000         1.000         1.000         1.000
+ PRSSMCPD       0.800         1.000         1.000         1.000         1.000
+
+
+           Covariance Coverage
+              C3            C4            C5            C6            C7
+              ________      ________      ________      ________      ________
+ C3             1.000
+ C4             1.000         1.000
+ C5             1.000         1.000         1.000
+ C6             1.000         1.000         1.000         1.000
+ C7             1.000         1.000         1.000         1.000         1.000
+ C8             1.000         1.000         1.000         1.000         1.000
+ C9             1.000         1.000         1.000         1.000         1.000
+ C10            1.000         1.000         1.000         1.000         1.000
+ PRSSMCPD       1.000         1.000         1.000         1.000         1.000
+
+
+           Covariance Coverage
+              C8            C9            C10           PRSSMCPD
+              ________      ________      ________      ________
+ C8             1.000
+ C9             1.000         1.000
+ C10            1.000         1.000         1.000
+ PRSSMCPD       1.000         1.000         1.000         1.000
+
+
+     PROPORTION OF DATA PRESENT FOR U
+
+
+           Covariance Coverage
+              PARSMK        PARADDEP      PARCAN        DAILYSMK
+              ________      ________      ________      ________
+ PARSMK         0.901
+ PARADDEP       0.869         0.959
+ PARCAN         0.776         0.799         0.822
+ DAILYSMK       0.725         0.769         0.679         0.800
+
+
+     PROPORTION OF DATA PRESENT FOR Y
+
+
+           Covariance Coverage
+              CPD           FTND          SEX           AGE           C1
+              ________      ________      ________      ________      ________
+ CPD            0.321
+ FTND           0.321         0.800
+ SEX            0.321         0.800         1.000
+ AGE            0.321         0.800         1.000         1.000
+ C1             0.321         0.800         1.000         1.000         1.000
+ C2             0.321         0.800         1.000         1.000         1.000
+ C3             0.321         0.800         1.000         1.000         1.000
+ C4             0.321         0.800         1.000         1.000         1.000
+ C5             0.321         0.800         1.000         1.000         1.000
+ C6             0.321         0.800         1.000         1.000         1.000
+ C7             0.321         0.800         1.000         1.000         1.000
+ C8             0.321         0.800         1.000         1.000         1.000
+ C9             0.321         0.800         1.000         1.000         1.000
+ C10            0.321         0.800         1.000         1.000         1.000
+ PRSSMCPD       0.321         0.800         1.000         1.000         1.000
+
+
+           Covariance Coverage
+              C2            C3            C4            C5            C6
+              ________      ________      ________      ________      ________
+ C2             1.000
+ C3             1.000         1.000
+ C4             1.000         1.000         1.000
+ C5             1.000         1.000         1.000         1.000
+ C6             1.000         1.000         1.000         1.000         1.000
+ C7             1.000         1.000         1.000         1.000         1.000
+ C8             1.000         1.000         1.000         1.000         1.000
+ C9             1.000         1.000         1.000         1.000         1.000
+ C10            1.000         1.000         1.000         1.000         1.000
+ PRSSMCPD       1.000         1.000         1.000         1.000         1.000
+
+
+           Covariance Coverage
+              C7            C8            C9            C10           PRSSMCPD
+              ________      ________      ________      ________      ________
+ C7             1.000
+ C8             1.000         1.000
+ C9             1.000         1.000         1.000
+ C10            1.000         1.000         1.000         1.000
+ PRSSMCPD       1.000         1.000         1.000         1.000         1.000
+
+
+UNIVARIATE PROPORTIONS AND COUNTS FOR CATEGORICAL VARIABLES
+
+    PARSMK
+      Category 1    0.505          749.000
+      Category 2    0.495          733.000
+    PARADDEP
+      Category 1    0.930         1466.000
+      Category 2    0.070          110.000
+    PARCAN
+      Category 1    0.956         1292.000
+      Category 2    0.044           59.000
+    DAILYSMK
+      Category 1    0.758          997.000
+      Category 2    0.242          318.000
+
+
+SAMPLE STATISTICS
+
+
+     ESTIMATED SAMPLE STATISTICS
+
+
+           Means
+              CPD           FTND          SEX           AGE           C1
+              ________      ________      ________      ________      ________
+               -0.418        -0.012         0.521        -0.001        -0.006
+
+
+           Means
+              C2            C3            C4            C5            C6
+              ________      ________      ________      ________      ________
+                0.021         0.015        -0.059        -0.017         0.004
+
+
+           Means
+              C7            C8            C9            C10           PRSSMCPD
+              ________      ________      ________      ________      ________
+               -0.022        -0.004         0.018         0.028         0.012
+
+
+           Covariances
+              CPD           FTND          SEX           AGE           C1
+              ________      ________      ________      ________      ________
+ CPD            0.819
+ FTND           0.609         0.971
+ SEX            0.005         0.008         0.250
+ AGE            0.051         0.107         0.035         0.994
+ C1             0.019         0.014        -0.014         0.051         0.923
+ C2             0.029         0.014        -0.003         0.021         0.229
+ C3            -0.003         0.038        -0.021         0.033         0.075
+ C4            -0.031        -0.007         0.001        -0.018         0.039
+ C5            -0.044        -0.034        -0.007         0.007        -0.003
+ C6            -0.034         0.018         0.004         0.013         0.001
+ C7            -0.011         0.015         0.006        -0.015        -0.012
+ C8            -0.009        -0.018         0.001         0.024         0.007
+ C9            -0.032        -0.007         0.012        -0.027        -0.012
+ C10            0.023         0.005         0.000        -0.018         0.027
+ PRSSMCPD       0.234         0.156         0.001        -0.016         0.016
+
+
+           Covariances
+              C2            C3            C4            C5            C6
+              ________      ________      ________      ________      ________
+ C2             0.475
+ C3            -0.172         0.919
+ C4            -0.001        -0.015         0.500
+ C5            -0.007        -0.027        -0.031         0.492
+ C6             0.056        -0.034        -0.011        -0.083         0.551
+ C7            -0.023        -0.058         0.039         0.022         0.016
+ C8             0.037        -0.048        -0.043         0.031        -0.012
+ C9            -0.014        -0.037         0.012        -0.024         0.005
+ C10           -0.013        -0.010         0.025         0.010        -0.024
+ PRSSMCPD      -0.007         0.036         0.019        -0.032        -0.045
+
+
+           Covariances
+              C7            C8            C9            C10           PRSSMCPD
+              ________      ________      ________      ________      ________
+ C7             0.573
+ C8            -0.025         0.550
+ C9             0.035        -0.014         0.568
+ C10            0.006         0.030         0.029         0.551
+ PRSSMCPD      -0.027        -0.027         0.009         0.025         1.009
+
+
+           Correlations
+              CPD           FTND          SEX           AGE           C1
+              ________      ________      ________      ________      ________
+ CPD            1.000
+ FTND           0.683         1.000
+ SEX            0.010         0.017         1.000
+ AGE            0.057         0.109         0.070         1.000
+ C1             0.022         0.015        -0.030         0.053         1.000
+ C2             0.047         0.021        -0.008         0.031         0.346
+ C3            -0.004         0.040        -0.043         0.034         0.082
+ C4            -0.049        -0.010         0.002        -0.025         0.058
+ C5            -0.069        -0.050        -0.020         0.011        -0.004
+ C6            -0.050         0.025         0.012         0.017         0.001
+ C7            -0.017         0.020         0.017        -0.020        -0.017
+ C8            -0.014        -0.025         0.003         0.032         0.009
+ C9            -0.047        -0.010         0.032        -0.036        -0.016
+ C10            0.034         0.007         0.001        -0.024         0.037
+ PRSSMCPD       0.258         0.157         0.003        -0.016         0.017
+
+
+           Correlations
+              C2            C3            C4            C5            C6
+              ________      ________      ________      ________      ________
+ C2             1.000
+ C3            -0.260         1.000
+ C4            -0.002        -0.022         1.000
+ C5            -0.015        -0.041        -0.063         1.000
+ C6             0.109        -0.048        -0.022        -0.160         1.000
+ C7            -0.044        -0.079         0.072         0.042         0.028
+ C8             0.071        -0.068        -0.082         0.060        -0.023
+ C9            -0.026        -0.051         0.022        -0.045         0.009
+ C10           -0.026        -0.014         0.048         0.018        -0.043
+ PRSSMCPD      -0.010         0.037         0.027        -0.045        -0.061
+
+
+           Correlations
+              C7            C8            C9            C10           PRSSMCPD
+              ________      ________      ________      ________      ________
+ C7             1.000
+ C8            -0.045         1.000
+ C9             0.061        -0.026         1.000
+ C10            0.010         0.054         0.052         1.000
+ PRSSMCPD      -0.036        -0.037         0.012         0.034         1.000
+
+
+     MAXIMUM LOG-LIKELIHOOD VALUE FOR THE UNRESTRICTED (H1) MODEL IS -26908.262
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     CPD                  -0.068       0.076      -1.337   28.60%      -1.337     -0.568      0.201
+             528.000       1.017      -1.308       1.740    6.44%       0.201      0.971
+     FTND                 -0.023       2.416      -0.469   77.34%      -0.469     -0.469     -0.469
+            1315.000       0.971       5.428       5.452    0.08%      -0.469      0.123
+     SEX                   0.521      -0.083       0.000   47.93%       0.000      0.000      1.000
+            1644.000       0.250      -1.993       1.000   52.07%       1.000      1.000
+     AGE                  -0.001       0.395      -2.386    0.97%      -0.963     -0.963      0.461
+            1644.000       0.994      -0.577       3.308    0.12%       0.461      0.461
+     C1                   -0.006       4.637      -1.078    0.06%      -0.466     -0.275     -0.192
+            1644.000       0.923      26.282       7.970    0.06%      -0.109      0.165
+     C2                    0.021       2.870      -2.219    0.06%      -0.473     -0.148     -0.026
+            1644.000       0.475      23.072       6.647    0.06%       0.128      0.471
+     C3                    0.015       1.623      -5.903    0.06%      -0.552     -0.205     -0.053
+            1644.000       0.919      14.188       7.023    0.06%       0.106      0.446
+     C4                   -0.059       0.951      -2.124    0.06%      -0.642     -0.229     -0.061
+            1644.000       0.500      10.499       8.131    0.06%       0.109      0.502
+     C5                   -0.017       0.058      -2.454    0.06%      -0.590     -0.211     -0.025
+            1644.000       0.492       0.121       2.382    0.06%       0.150      0.565
+     C6                    0.004      -0.120      -4.142    0.06%      -0.601     -0.180      0.002
+            1644.000       0.551       0.837       2.916    0.06%       0.189      0.603
+     C7                   -0.022      -0.202      -3.734    0.06%      -0.653     -0.210      0.016
+            1644.000       0.573       0.446       2.063    0.06%       0.183      0.611
+     C8                   -0.004      -0.184      -4.189    0.06%      -0.653     -0.170      0.004
+            1644.000       0.550       0.526       2.570    0.06%       0.196      0.603
+     C9                    0.018      -0.092      -2.592    0.06%      -0.620     -0.162      0.043
+            1644.000       0.568       0.136       2.719    0.06%       0.203      0.651
+     C10                   0.028       0.031      -3.362    0.06%      -0.604     -0.139      0.032
+            1644.000       0.551       0.535       3.648    0.06%       0.212      0.646
+     PRSSMCPD              0.012      -0.013      -2.975    0.06%      -0.858     -0.231      0.038
+            1644.000       1.009      -0.072       3.144    0.06%       0.275      0.876
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       31
+
+Loglikelihood
+
+          H0 Value                       -4174.385
+          H0 Scaling Correction Factor      1.1969
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                    8410.770
+          Bayesian (BIC)                  8578.321
+          Sample-Size Adjusted BIC        8479.839
+            (n* = (n + 2) / 24)
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ F2SUB    BY
+    PARSMK             1.000      0.000    999.000    999.000
+    PARADDEP           0.726      0.214      3.397      0.001
+    PARCAN             1.001      0.341      2.933      0.003
+
+ FSMK     BY
+    CPD                1.000      0.000    999.000    999.000
+    DAILYSMK          14.349      7.730      1.856      0.063
+    FTND               1.104      0.058     19.110      0.000
+
+ FSMK       ON
+    F2SUB              0.132      0.054      2.457      0.014
+    INTSUB             0.060      0.040      1.509      0.131
+
+ FSMK       ON
+    PRSSMCPD           0.157      0.025      6.172      0.000
+    SEX                0.033      0.048      0.684      0.494
+    AGE                0.063      0.025      2.533      0.011
+    C1                -0.013      0.028     -0.472      0.637
+    C2                 0.026      0.039      0.667      0.505
+    C3                 0.029      0.027      1.058      0.290
+    C4                -0.037      0.033     -1.108      0.268
+    C5                -0.041      0.032     -1.293      0.196
+    C6                 0.011      0.033      0.325      0.745
+    C7                 0.027      0.030      0.903      0.366
+    C8                -0.023      0.031     -0.743      0.458
+    C9                -0.014      0.030     -0.479      0.632
+    C10                0.002      0.031      0.078      0.938
+
+ F2SUB      ON
+    SEX               -0.085      0.153     -0.560      0.575
+    AGE                0.179      0.078      2.287      0.022
+
+ Intercepts
+    CPD               -0.535      0.046    -11.592      0.000
+    FTND              -0.026      0.038     -0.692      0.489
+
+ Thresholds
+    PARSMK$1          -0.031      0.117     -0.268      0.789
+    PARADDEP$1         3.293      0.262     12.548      0.000
+    PARCAN$1           4.362      0.504      8.658      0.000
+    DAILYSMK$1         4.506      2.251      2.002      0.045
+
+ Residual Variances
+    CPD                0.248      0.028      9.034      0.000
+    FTND               0.247      0.026      9.355      0.000
+    F2SUB              3.675      1.951      1.884      0.060
+    FSMK               0.482      0.052      9.268      0.000
+
+
+STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ F2SUB    BY
+    PARSMK             0.728      0.090      8.059      0.000
+    PARADDEP           0.610      0.070      8.760      0.000
+    PARCAN             0.728      0.073      9.982      0.000
+
+ FSMK     BY
+    CPD                0.840      0.019     43.494      0.000
+    DAILYSMK           0.987      0.014     71.340      0.000
+    FTND               0.864      0.017     51.065      0.000
+
+ FSMK       ON
+    F2SUB              0.330      0.066      4.973      0.000
+    INTSUB             0.151      0.069      2.184      0.029
+
+ FSMK       ON
+    PRSSMCPD           0.204      0.032      6.381      0.000
+    SEX                0.021      0.031      0.685      0.493
+    AGE                0.082      0.032      2.531      0.011
+    C1                -0.017      0.035     -0.473      0.636
+    C2                 0.023      0.035      0.668      0.504
+    C3                 0.036      0.034      1.056      0.291
+    C4                -0.034      0.030     -1.111      0.266
+    C5                -0.037      0.029     -1.293      0.196
+    C6                 0.010      0.032      0.326      0.745
+    C7                 0.026      0.029      0.903      0.367
+    C8                -0.022      0.029     -0.742      0.458
+    C9                -0.014      0.029     -0.480      0.631
+    C10                0.002      0.029      0.078      0.938
+
+ F2SUB      ON
+    SEX               -0.022      0.040     -0.548      0.583
+    AGE                0.093      0.042      2.221      0.026
+
+ Intercepts
+    CPD               -0.582      0.053    -11.017      0.000
+    FTND              -0.026      0.039     -0.682      0.495
+
+ Thresholds
+    PARSMK$1          -0.012      0.044     -0.267      0.789
+    PARADDEP$1         1.438      0.057     25.258      0.000
+    PARCAN$1           1.648      0.072     23.032      0.000
+    DAILYSMK$1         0.402      0.064      6.271      0.000
+
+ Residual Variances
+    CPD                0.295      0.032      9.079      0.000
+    FTND               0.254      0.029      8.674      0.000
+    F2SUB              0.991      0.008    124.724      0.000
+    FSMK               0.810      0.067     12.154      0.000
+
+
+R-SQUARE
+
+    Observed                                        Two-Tailed
+    Variable        Estimate       S.E.  Est./S.E.    P-Value
+
+    PARSMK             0.530      0.131      4.029      0.000
+    PARADDEP           0.373      0.085      4.380      0.000
+    PARCAN             0.530      0.106      4.991      0.000
+    DAILYSMK           0.974      0.027     35.670      0.000
+    CPD                0.705      0.032     21.747      0.000
+    FTND               0.746      0.029     25.532      0.000
+
+     Latent                                         Two-Tailed
+    Variable        Estimate       S.E.  Est./S.E.    P-Value
+
+    F2SUB              0.009      0.008      1.111      0.267
+    FSMK               0.190      0.067      2.858      0.004
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.474E-04
+       (ratio of smallest to largest eigenvalue)
+
+
+CONFIDENCE INTERVALS OF MODEL RESULTS
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+ F2SUB    BY
+    PARSMK           1.000       1.000       1.000       1.000       1.000       1.000       1.000
+    PARADDEP         0.175       0.307       0.374       0.726       1.078       1.145       1.277
+    PARCAN           0.122       0.332       0.440       1.001       1.562       1.670       1.880
+
+ FSMK     BY
+    CPD              1.000       1.000       1.000       1.000       1.000       1.000       1.000
+    DAILYSMK        -5.562      -0.802       1.633      14.349      27.064      29.499      34.259
+    FTND             0.956       0.991       1.009       1.104       1.199       1.218       1.253
+
+ FSMK     ON
+    F2SUB           -0.006       0.027       0.044       0.132       0.221       0.238       0.271
+    INTSUB          -0.043      -0.018      -0.005       0.060       0.126       0.138       0.163
+
+ FSMK     ON
+    PRSSMCPD         0.091       0.107       0.115       0.157       0.199       0.207       0.222
+    SEX             -0.090      -0.061      -0.046       0.033       0.111       0.126       0.156
+    AGE             -0.001       0.014       0.022       0.063       0.104       0.112       0.128
+    C1              -0.086      -0.069      -0.060      -0.013       0.033       0.042       0.059
+    C2              -0.074      -0.050      -0.038       0.026       0.090       0.102       0.126
+    C3              -0.042      -0.025      -0.016       0.029       0.074       0.083       0.100
+    C4              -0.123      -0.102      -0.092      -0.037       0.018       0.028       0.049
+    C5              -0.122      -0.103      -0.093      -0.041       0.011       0.021       0.040
+    C6              -0.074      -0.054      -0.043       0.011       0.065       0.075       0.096
+    C7              -0.049      -0.031      -0.022       0.027       0.075       0.084       0.103
+    C8              -0.102      -0.083      -0.073      -0.023       0.028       0.037       0.056
+    C9              -0.091      -0.072      -0.063      -0.014       0.035       0.044       0.062
+    C10             -0.076      -0.057      -0.048       0.002       0.053       0.062       0.081
+
+ F2SUB    ON
+    SEX             -0.478      -0.384      -0.336      -0.085       0.165       0.214       0.307
+    AGE             -0.023       0.026       0.050       0.179       0.308       0.333       0.381
+
+ Intercepts
+    CPD             -0.653      -0.625      -0.610      -0.535      -0.459      -0.444      -0.416
+    FTND            -0.123      -0.100      -0.088      -0.026       0.036       0.048       0.071
+
+ Thresholds
+    PARSMK$1        -0.334      -0.261      -0.224      -0.031       0.162       0.199       0.271
+    PARADDEP$1       2.617       2.779       2.861       3.293       3.725       3.807       3.969
+    PARCAN$1         3.064       3.374       3.533       4.362       5.190       5.349       5.659
+    DAILYSMK$1      -1.293       0.094       0.803       4.506       8.209       8.918      10.304
+
+ Residual Variances
+    CPD              0.178       0.195       0.203       0.248       0.294       0.302       0.319
+    FTND             0.179       0.195       0.203       0.247       0.290       0.298       0.314
+    F2SUB           -1.350      -0.149       0.466       3.675       6.884       7.498       8.700
+    FSMK             0.348       0.380       0.396       0.482       0.567       0.584       0.616
+
+
+CONFIDENCE INTERVALS OF STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+ F2SUB    BY
+    PARSMK           0.495       0.551       0.579       0.728       0.876       0.905       0.961
+    PARADDEP         0.431       0.474       0.496       0.610       0.725       0.747       0.790
+    PARCAN           0.540       0.585       0.608       0.728       0.848       0.871       0.916
+
+ FSMK     BY
+    CPD              0.790       0.802       0.808       0.840       0.872       0.878       0.890
+    DAILYSMK         0.951       0.960       0.964       0.987       1.010       1.014       1.022
+    FTND             0.820       0.831       0.836       0.864       0.892       0.897       0.908
+
+ FSMK     ON
+    F2SUB            0.159       0.200       0.221       0.330       0.439       0.460       0.501
+    INTSUB          -0.027       0.015       0.037       0.151       0.264       0.286       0.329
+
+ FSMK     ON
+    PRSSMCPD         0.122       0.141       0.152       0.204       0.257       0.267       0.287
+    SEX             -0.058      -0.039      -0.030       0.021       0.072       0.082       0.101
+    AGE             -0.001       0.018       0.029       0.082       0.135       0.145       0.165
+    C1              -0.107      -0.086      -0.074      -0.017       0.041       0.052       0.074
+    C2              -0.066      -0.045      -0.034       0.023       0.080       0.091       0.112
+    C3              -0.052      -0.031      -0.020       0.036       0.092       0.103       0.124
+    C4              -0.112      -0.094      -0.084      -0.034       0.016       0.026       0.045
+    C5              -0.111      -0.093      -0.084      -0.037       0.010       0.019       0.037
+    C6              -0.071      -0.052      -0.042       0.010       0.062       0.072       0.092
+    C7              -0.048      -0.031      -0.021       0.026       0.074       0.083       0.101
+    C8              -0.098      -0.080      -0.070      -0.022       0.027       0.036       0.054
+    C9              -0.088      -0.070      -0.061      -0.014       0.034       0.043       0.061
+    C10             -0.073      -0.055      -0.046       0.002       0.051       0.060       0.078
+
+ F2SUB    ON
+    SEX             -0.126      -0.101      -0.089      -0.022       0.044       0.057       0.082
+    AGE             -0.015       0.011       0.024       0.093       0.162       0.175       0.201
+
+ Intercepts
+    CPD             -0.718      -0.686      -0.669      -0.582      -0.495      -0.478      -0.446
+    FTND            -0.126      -0.103      -0.090      -0.026       0.037       0.050       0.074
+
+ Thresholds
+    PARSMK$1        -0.126      -0.099      -0.085      -0.012       0.061       0.075       0.103
+    PARADDEP$1       1.291       1.326       1.344       1.438       1.532       1.550       1.585
+    PARCAN$1         1.464       1.508       1.530       1.648       1.766       1.788       1.832
+    DAILYSMK$1       0.237       0.276       0.296       0.402       0.507       0.527       0.567
+
+ Residual Variances
+    CPD              0.211       0.231       0.241       0.295       0.348       0.358       0.378
+    FTND             0.178       0.196       0.205       0.254       0.302       0.311       0.329
+    F2SUB            0.971       0.976       0.978       0.991       1.004       1.007       1.012
+    FSMK             0.638       0.679       0.700       0.810       0.919       0.940       0.981
+
+
+     Beginning Time:  11:38:11
+        Ending Time:  11:43:42
+       Elapsed Time:  00:05:31
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2019 Muthen & Muthen

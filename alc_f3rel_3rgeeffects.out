@@ -1,0 +1,634 @@
+Mplus VERSION 8.3
+MUTHEN & MUTHEN
+03/05/2020  12:12 PM
+
+INPUT INSTRUCTIONS
+
+    DATA:
+         FILE IS  \\CNAS.RU.NL\U642157\Documents\6 TRAILS\datasets\full.csv;
+
+    VARIABLE:
+         NAMES ARE sex age C1 C2 C3 C4 C5 C6 C7 C8 C9 C10
+         parknow pardisc parcont parsol rel_rej rel_warm
+         parsmk parcpd paralc paraddep parcan
+         prssmcpd prsalc prscan
+         eversmk dailysmk cpd ftnd alc alcmonth audit can cupit1 cupit2 ;
+         MISSING * ;
+         USEVARIABLES sex age C1 C2 C3 C4 C5 C6 C7 C8 C9 C10
+         rel_rej rel_warm
+         prsalc
+         alc ;
+
+      ANALYSIS: estimator=MLR  ;
+
+      MODEL:
+         !Latent factors parenting
+         F3rel BY rel_rej-rel_warm ;
+
+         !Main effects
+         alc ON F3rel prsalc ;
+         alc ON sex age C1 C2 C3 C4 C5 C6 C7 C8 C9 C10 ;
+
+         !rGE
+         F3rel ON prsalc ;
+
+         F3rel ON sex age ;
+
+       OUTPUT:
+         SAMPSTAT CINTERVAL stdyx modindices(4);
+
+
+
+
+*** WARNING
+  Data set contains cases with missing on x-variables.
+  These cases were not included in the analysis.
+  Number of cases with missing on x-variables:  44
+*** WARNING
+  Data set contains cases with missing on all variables except
+  x-variables.  These cases were not included in the analysis.
+  Number of cases with missing on all variables except x-variables:  4
+   2 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                        1645
+
+Number of dependent variables                                    3
+Number of independent variables                                 13
+Number of continuous latent variables                            1
+
+Observed dependent variables
+
+  Continuous
+   REL_REJ     REL_WARM    ALC
+
+Observed independent variables
+   SEX         AGE         C1          C2          C3          C4
+   C5          C6          C7          C8          C9          C10
+   PRSALC
+
+Continuous latent variables
+   F3REL
+
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+
+Input data file(s)
+  \\CNAS.RU.NL\U642157\Documents\6 TRAILS\datasets\full.csv
+
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns             4
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT
+
+
+           Covariance Coverage
+              REL_REJ       REL_WARM      ALC           SEX           AGE
+              ________      ________      ________      ________      ________
+ REL_REJ        0.996
+ REL_WARM       0.996         0.997
+ ALC            0.679         0.679         0.682
+ SEX            0.996         0.997         0.682         1.000
+ AGE            0.996         0.997         0.682         1.000         1.000
+ C1             0.996         0.997         0.682         1.000         1.000
+ C2             0.996         0.997         0.682         1.000         1.000
+ C3             0.996         0.997         0.682         1.000         1.000
+ C4             0.996         0.997         0.682         1.000         1.000
+ C5             0.996         0.997         0.682         1.000         1.000
+ C6             0.996         0.997         0.682         1.000         1.000
+ C7             0.996         0.997         0.682         1.000         1.000
+ C8             0.996         0.997         0.682         1.000         1.000
+ C9             0.996         0.997         0.682         1.000         1.000
+ C10            0.996         0.997         0.682         1.000         1.000
+ PRSALC         0.996         0.997         0.682         1.000         1.000
+
+
+           Covariance Coverage
+              C1            C2            C3            C4            C5
+              ________      ________      ________      ________      ________
+ C1             1.000
+ C2             1.000         1.000
+ C3             1.000         1.000         1.000
+ C4             1.000         1.000         1.000         1.000
+ C5             1.000         1.000         1.000         1.000         1.000
+ C6             1.000         1.000         1.000         1.000         1.000
+ C7             1.000         1.000         1.000         1.000         1.000
+ C8             1.000         1.000         1.000         1.000         1.000
+ C9             1.000         1.000         1.000         1.000         1.000
+ C10            1.000         1.000         1.000         1.000         1.000
+ PRSALC         1.000         1.000         1.000         1.000         1.000
+
+
+           Covariance Coverage
+              C6            C7            C8            C9            C10
+              ________      ________      ________      ________      ________
+ C6             1.000
+ C7             1.000         1.000
+ C8             1.000         1.000         1.000
+ C9             1.000         1.000         1.000         1.000
+ C10            1.000         1.000         1.000         1.000         1.000
+ PRSALC         1.000         1.000         1.000         1.000         1.000
+
+
+           Covariance Coverage
+              PRSALC
+              ________
+ PRSALC         1.000
+
+
+SAMPLE STATISTICS
+
+
+     ESTIMATED SAMPLE STATISTICS
+
+
+           Means
+              REL_REJ       REL_WARM      ALC           SEX           AGE
+              ________      ________      ________      ________      ________
+                0.020        -0.036         0.053         0.521         0.000
+
+
+           Means
+              C1            C2            C3            C4            C5
+              ________      ________      ________      ________      ________
+               -0.008         0.021         0.015        -0.058        -0.017
+
+
+           Means
+              C6            C7            C8            C9            C10
+              ________      ________      ________      ________      ________
+                0.003        -0.024        -0.004         0.018         0.028
+
+
+           Means
+              PRSALC
+              ________
+                0.005
+
+
+           Covariances
+              REL_REJ       REL_WARM      ALC           SEX           AGE
+              ________      ________      ________      ________      ________
+ REL_REJ        0.959
+ REL_WARM       0.331         0.952
+ ALC            0.037         0.023         1.027
+ SEX            0.076         0.070         0.169         0.250
+ AGE            0.010        -0.009         0.044         0.038         0.998
+ C1            -0.024        -0.028         0.004        -0.016         0.048
+ C2            -0.028         0.019         0.023        -0.003         0.023
+ C3             0.019        -0.017        -0.028        -0.020         0.035
+ C4             0.008         0.013         0.019         0.002        -0.014
+ C5             0.015        -0.012         0.008        -0.007         0.008
+ C6            -0.013        -0.028        -0.014         0.005         0.013
+ C7            -0.001        -0.038         0.027         0.006        -0.013
+ C8             0.022         0.040        -0.016         0.001         0.022
+ C9             0.031         0.028        -0.008         0.012        -0.030
+ C10            0.032         0.010        -0.016         0.000        -0.018
+ PRSALC        -0.016        -0.018         0.058         0.009         0.041
+
+
+           Covariances
+              C1            C2            C3            C4            C5
+              ________      ________      ________      ________      ________
+ C1             0.915
+ C2             0.223         0.472
+ C3             0.078        -0.169         0.917
+ C4             0.041         0.000        -0.016         0.502
+ C5            -0.002        -0.007        -0.027        -0.031         0.492
+ C6            -0.003         0.054        -0.032        -0.010        -0.083
+ C7            -0.011        -0.022        -0.058         0.036         0.023
+ C8             0.007         0.036        -0.048        -0.044         0.031
+ C9            -0.011        -0.014        -0.037         0.012        -0.024
+ C10            0.026        -0.014        -0.010         0.025         0.010
+ PRSALC         0.061         0.016         0.005         0.000        -0.003
+
+
+           Covariances
+              C6            C7            C8            C9            C10
+              ________      ________      ________      ________      ________
+ C6             0.550
+ C7             0.016         0.573
+ C8            -0.013        -0.026         0.551
+ C9             0.004         0.036        -0.014         0.568
+ C10           -0.025         0.006         0.030         0.030         0.550
+ PRSALC        -0.012        -0.007        -0.049        -0.007         0.012
+
+
+           Covariances
+              PRSALC
+              ________
+ PRSALC         1.008
+
+
+           Correlations
+              REL_REJ       REL_WARM      ALC           SEX           AGE
+              ________      ________      ________      ________      ________
+ REL_REJ        1.000
+ REL_WARM       0.347         1.000
+ ALC            0.038         0.024         1.000
+ SEX            0.156         0.144         0.333         1.000
+ AGE            0.010        -0.009         0.043         0.076         1.000
+ C1            -0.025        -0.030         0.004        -0.033         0.050
+ C2            -0.041         0.028         0.033        -0.008         0.033
+ C3             0.020        -0.019        -0.029        -0.043         0.036
+ C4             0.012         0.019         0.026         0.005        -0.019
+ C5             0.022        -0.017         0.011        -0.019         0.012
+ C6            -0.017        -0.039        -0.019         0.013         0.017
+ C7            -0.002        -0.051         0.035         0.016        -0.018
+ C8             0.030         0.055        -0.022         0.001         0.029
+ C9             0.043         0.038        -0.011         0.032        -0.039
+ C10            0.044         0.014        -0.021         0.000        -0.025
+ PRSALC        -0.017        -0.018         0.057         0.018         0.041
+
+
+           Correlations
+              C1            C2            C3            C4            C5
+              ________      ________      ________      ________      ________
+ C1             1.000
+ C2             0.340         1.000
+ C3             0.085        -0.257         1.000
+ C4             0.060         0.000        -0.023         1.000
+ C5            -0.003        -0.014        -0.041        -0.062         1.000
+ C6            -0.004         0.106        -0.045        -0.019        -0.159
+ C7            -0.016        -0.043        -0.079         0.068         0.043
+ C8             0.009         0.070        -0.068        -0.083         0.060
+ C9            -0.016        -0.027        -0.051         0.022        -0.045
+ C10            0.036        -0.028        -0.014         0.048         0.019
+ PRSALC         0.064         0.023         0.005         0.001        -0.004
+
+
+           Correlations
+              C6            C7            C8            C9            C10
+              ________      ________      ________      ________      ________
+ C6             1.000
+ C7             0.028         1.000
+ C8            -0.024        -0.046         1.000
+ C9             0.007         0.062        -0.024         1.000
+ C10           -0.045         0.010         0.054         0.053         1.000
+ PRSALC        -0.017        -0.009        -0.066        -0.009         0.017
+
+
+           Correlations
+              PRSALC
+              ________
+ PRSALC         1.000
+
+
+     MAXIMUM LOG-LIKELIHOOD VALUE FOR THE UNRESTRICTED (H1) MODEL IS -30554.916
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     REL_REJ               0.020       1.270      -1.567    0.61%      -0.741     -0.374     -0.191
+            1639.000       0.959       2.534       4.765    0.06%       0.085      0.635
+     REL_WARM             -0.036       0.726      -1.589    0.85%      -0.929     -0.490     -0.215
+            1640.000       0.952       0.158       4.017    0.06%       0.060      0.774
+     ALC                   0.038       1.565      -1.129    4.28%      -0.772     -0.416     -0.237
+            1122.000       1.026       2.885       4.843    0.09%      -0.059      0.743
+     SEX                   0.521      -0.084       0.000   47.90%       0.000      0.000      1.000
+            1645.000       0.250      -1.993       1.000   52.10%       1.000      1.000
+     AGE                   0.000       0.388      -2.386    1.03%      -0.963     -0.963      0.461
+            1645.000       0.998      -0.574       3.308    0.12%       0.461      0.461
+     C1                   -0.008       4.668      -1.078    0.06%      -0.466     -0.274     -0.191
+            1645.000       0.915      26.687       7.970    0.06%      -0.109      0.165
+     C2                    0.021       2.872      -2.219    0.06%      -0.474     -0.148     -0.026
+            1645.000       0.472      23.279       6.647    0.06%       0.129      0.471
+     C3                    0.015       1.628      -5.903    0.06%      -0.550     -0.205     -0.054
+            1645.000       0.917      14.246       7.023    0.06%       0.112      0.445
+     C4                   -0.058       0.942      -2.124    0.06%      -0.641     -0.229     -0.060
+            1645.000       0.502      10.408       8.131    0.06%       0.111      0.503
+     C5                   -0.017       0.057      -2.454    0.06%      -0.591     -0.212     -0.023
+            1645.000       0.492       0.117       2.382    0.06%       0.151      0.565
+     C6                    0.003      -0.119      -4.142    0.06%      -0.601     -0.183     -0.004
+            1645.000       0.550       0.843       2.916    0.06%       0.185      0.601
+     C7                   -0.024      -0.197      -3.734    0.06%      -0.657     -0.211      0.012
+            1645.000       0.573       0.440       2.063    0.06%       0.182      0.611
+     C8                   -0.004      -0.183      -4.189    0.06%      -0.653     -0.171      0.006
+            1645.000       0.551       0.517       2.570    0.06%       0.196      0.604
+     C9                    0.018      -0.090      -2.592    0.06%      -0.620     -0.163      0.044
+            1645.000       0.568       0.132       2.719    0.06%       0.204      0.651
+     C10                   0.028       0.031      -3.362    0.06%      -0.604     -0.139      0.032
+            1645.000       0.550       0.537       3.648    0.06%       0.212      0.646
+     PRSALC                0.005       0.090      -3.278    0.06%      -0.799     -0.281     -0.039
+            1645.000       1.008       0.057       3.228    0.06%       0.246      0.849
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       25
+
+Loglikelihood
+
+          H0 Value                       -5980.596
+          H0 Scaling Correction Factor      1.1040
+            for MLR
+          H1 Value                       -5964.468
+          H1 Scaling Correction Factor      1.0738
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                   12011.191
+          Bayesian (BIC)                 12146.329
+          Sample-Size Adjusted BIC       12066.908
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit
+
+          Value                             30.983*
+          Degrees of Freedom                    23
+          P-Value                           0.1232
+          Scaling Correction Factor         1.0410
+            for MLR
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference testing in the regular way.  MLM, MLR and WLSM
+    chi-square difference testing is described on the Mplus website.  MLMV, WLSMV,
+    and ULSMV difference testing is done using the DIFFTEST option.
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.015
+          90 Percent C.I.                    0.000  0.027
+          Probability RMSEA <= .05           1.000
+
+CFI/TLI
+
+          CFI                                0.980
+          TLI                                0.963
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                            432.097
+          Degrees of Freedom                    42
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.020
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ F3REL    BY
+    REL_REJ            1.000      0.000    999.000    999.000
+    REL_WARM           0.936      0.175      5.339      0.000
+
+ F3REL    ON
+    PRSALC            -0.020      0.020     -0.983      0.326
+    SEX                0.305      0.048      6.394      0.000
+    AGE               -0.010      0.021     -0.456      0.648
+
+ ALC      ON
+    F3REL             -0.050      0.073     -0.691      0.489
+
+ ALC      ON
+    PRSALC             0.048      0.028      1.752      0.080
+    SEX                0.688      0.060     11.557      0.000
+    AGE                0.015      0.030      0.509      0.611
+    C1                 0.000      0.048     -0.008      0.993
+    C2                 0.056      0.051      1.089      0.276
+    C3                -0.007      0.034     -0.205      0.837
+    C4                 0.033      0.043      0.780      0.436
+    C5                 0.020      0.042      0.475      0.635
+    C6                -0.037      0.039     -0.952      0.341
+    C7                 0.040      0.040      1.010      0.313
+    C8                -0.025      0.038     -0.671      0.502
+    C9                -0.027      0.039     -0.675      0.500
+    C10               -0.028      0.039     -0.720      0.471
+
+ Intercepts
+    REL_REJ           -0.139      0.031     -4.461      0.000
+    REL_WARM          -0.185      0.033     -5.643      0.000
+    ALC               -0.294      0.031     -9.388      0.000
+
+ Residual Variances
+    REL_REJ            0.605      0.072      8.383      0.000
+    REL_WARM           0.642      0.064      9.972      0.000
+    ALC                0.904      0.059     15.342      0.000
+    F3REL              0.330      0.071      4.670      0.000
+
+
+STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ F3REL    BY
+    REL_REJ            0.607      0.060     10.150      0.000
+    REL_WARM           0.571      0.057     10.087      0.000
+
+ F3REL    ON
+    PRSALC            -0.033      0.034     -0.990      0.322
+    SEX                0.256      0.033      7.774      0.000
+    AGE               -0.016      0.036     -0.451      0.652
+
+ ALC      ON
+    F3REL             -0.030      0.042     -0.700      0.484
+
+ ALC      ON
+    PRSALC             0.048      0.027      1.754      0.079
+    SEX                0.339      0.025     13.397      0.000
+    AGE                0.015      0.030      0.509      0.611
+    C1                 0.000      0.045     -0.008      0.993
+    C2                 0.038      0.035      1.087      0.277
+    C3                -0.007      0.032     -0.205      0.837
+    C4                 0.023      0.030      0.780      0.435
+    C5                 0.014      0.029      0.476      0.634
+    C6                -0.027      0.028     -0.954      0.340
+    C7                 0.030      0.030      1.009      0.313
+    C8                -0.019      0.028     -0.673      0.501
+    C9                -0.020      0.029     -0.675      0.500
+    C10               -0.021      0.029     -0.723      0.470
+
+ Intercepts
+    REL_REJ           -0.142      0.033     -4.311      0.000
+    REL_WARM          -0.190      0.035     -5.494      0.000
+    ALC               -0.290      0.033     -8.657      0.000
+
+ Residual Variances
+    REL_REJ            0.631      0.073      8.689      0.000
+    REL_WARM           0.674      0.065     10.447      0.000
+    ALC                0.880      0.016     53.955      0.000
+    F3REL              0.934      0.017     54.876      0.000
+
+
+R-SQUARE
+
+    Observed                                        Two-Tailed
+    Variable        Estimate       S.E.  Est./S.E.    P-Value
+
+    REL_REJ            0.369      0.073      5.075      0.000
+    REL_WARM           0.326      0.065      5.044      0.000
+    ALC                0.120      0.016      7.329      0.000
+
+     Latent                                         Two-Tailed
+    Variable        Estimate       S.E.  Est./S.E.    P-Value
+
+    F3REL              0.066      0.017      3.891      0.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.865E-02
+       (ratio of smallest to largest eigenvalue)
+
+
+CONFIDENCE INTERVALS OF MODEL RESULTS
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+ F3REL    BY
+    REL_REJ          1.000       1.000       1.000       1.000       1.000       1.000       1.000
+    REL_WARM         0.485       0.593       0.648       0.936       1.225       1.280       1.388
+
+ F3REL    ON
+    PRSALC          -0.071      -0.059      -0.053      -0.020       0.013       0.020       0.032
+    SEX              0.182       0.212       0.227       0.305       0.384       0.399       0.428
+    AGE             -0.063      -0.050      -0.044      -0.010       0.025       0.031       0.044
+
+ ALC      ON
+    F3REL           -0.238      -0.193      -0.170      -0.050       0.070       0.093       0.137
+
+ ALC      ON
+    PRSALC          -0.023      -0.006       0.003       0.048       0.094       0.102       0.119
+    SEX              0.535       0.572       0.590       0.688       0.786       0.805       0.842
+    AGE             -0.062      -0.044      -0.034       0.015       0.065       0.075       0.093
+    C1              -0.125      -0.095      -0.080       0.000       0.079       0.094       0.124
+    C2              -0.076      -0.045      -0.029       0.056       0.140       0.156       0.188
+    C3              -0.094      -0.073      -0.062      -0.007       0.048       0.059       0.080
+    C4              -0.077      -0.050      -0.037       0.033       0.104       0.117       0.144
+    C5              -0.087      -0.062      -0.049       0.020       0.088       0.101       0.127
+    C6              -0.138      -0.114      -0.101      -0.037       0.027       0.039       0.063
+    C7              -0.062      -0.038      -0.025       0.040       0.105       0.118       0.142
+    C8              -0.123      -0.099      -0.087      -0.025       0.037       0.049       0.072
+    C9              -0.128      -0.103      -0.091      -0.027       0.038       0.050       0.075
+    C10             -0.130      -0.106      -0.093      -0.028       0.036       0.049       0.073
+
+ Intercepts
+    REL_REJ         -0.219      -0.200      -0.190      -0.139      -0.088      -0.078      -0.059
+    REL_WARM        -0.270      -0.249      -0.239      -0.185      -0.131      -0.121      -0.101
+    ALC             -0.374      -0.355      -0.345      -0.294      -0.242      -0.232      -0.213
+
+ Residual Variances
+    REL_REJ          0.419       0.464       0.487       0.605       0.724       0.747       0.791
+    REL_WARM         0.476       0.516       0.536       0.642       0.748       0.768       0.808
+    ALC              0.752       0.789       0.807       0.904       1.001       1.020       1.056
+    F3REL            0.148       0.192       0.214       0.330       0.447       0.469       0.512
+
+
+CONFIDENCE INTERVALS OF STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+ F3REL    BY
+    REL_REJ          0.453       0.490       0.509       0.607       0.706       0.724       0.761
+    REL_WARM         0.425       0.460       0.478       0.571       0.664       0.681       0.716
+
+ F3REL    ON
+    PRSALC          -0.120      -0.099      -0.088      -0.033       0.022       0.033       0.053
+    SEX              0.171       0.192       0.202       0.256       0.311       0.321       0.341
+    AGE             -0.108      -0.086      -0.074      -0.016       0.042       0.054       0.075
+
+ ALC      ON
+    F3REL           -0.139      -0.112      -0.099      -0.030       0.040       0.053       0.079
+
+ ALC      ON
+    PRSALC          -0.022      -0.006       0.003       0.048       0.093       0.101       0.118
+    SEX              0.274       0.290       0.298       0.339       0.381       0.389       0.405
+    AGE             -0.062      -0.043      -0.034       0.015       0.064       0.074       0.092
+    C1              -0.118      -0.090      -0.075       0.000       0.074       0.089       0.117
+    C2              -0.052      -0.030      -0.019       0.038       0.095       0.106       0.128
+    C3              -0.088      -0.069      -0.059      -0.007       0.046       0.056       0.075
+    C4              -0.054      -0.035      -0.026       0.023       0.072       0.082       0.100
+    C5              -0.060      -0.043      -0.034       0.014       0.061       0.070       0.088
+    C6              -0.100      -0.083      -0.074      -0.027       0.020       0.029       0.046
+    C7              -0.046      -0.028      -0.019       0.030       0.079       0.088       0.106
+    C8              -0.090      -0.073      -0.064      -0.019       0.027       0.035       0.052
+    C9              -0.095      -0.077      -0.068      -0.020       0.028       0.038       0.055
+    C10             -0.095      -0.077      -0.068      -0.021       0.027       0.036       0.053
+
+ Intercepts
+    REL_REJ         -0.227      -0.207      -0.196      -0.142      -0.088      -0.077      -0.057
+    REL_WARM        -0.279      -0.257      -0.247      -0.190      -0.133      -0.122      -0.101
+    ALC             -0.376      -0.356      -0.345      -0.290      -0.235      -0.224      -0.204
+
+ Residual Variances
+    REL_REJ          0.444       0.489       0.512       0.631       0.751       0.774       0.818
+    REL_WARM         0.508       0.548       0.568       0.674       0.781       0.801       0.841
+    ALC              0.838       0.848       0.854       0.880       0.907       0.912       0.922
+    F3REL            0.890       0.900       0.906       0.934       0.962       0.967       0.978
+
+
+MODEL MODIFICATION INDICES
+
+NOTE:  Modification indices for direct effects of observed dependent variables
+regressed on covariates may not be included.  To include these, request
+MODINDICES (ALL).
+
+Minimum M.I. value for printing the modification index     4.000
+
+                                   M.I.     E.P.C.  Std E.P.C.  StdYX E.P.C.
+
+ON Statements
+
+F3REL    ON C8                     4.027     0.056      0.093        0.069
+
+
+     Beginning Time:  12:12:02
+        Ending Time:  12:12:03
+       Elapsed Time:  00:00:01
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2019 Muthen & Muthen

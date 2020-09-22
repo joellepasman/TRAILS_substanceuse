@@ -1,0 +1,761 @@
+Mplus VERSION 8.3
+MUTHEN & MUTHEN
+03/05/2020  11:53 AM
+
+INPUT INSTRUCTIONS
+
+    DATA:
+          FILE IS \\CNAS.RU.NL\U642157\Documents\6 TRAILS\datasets\full.csv ;
+
+    VARIABLE:
+         NAMES ARE sex age C1 C2 C3 C4 C5 C6 C7 C8 C9 C10
+         parknow pardisc parcont parsol rel_rej rel_warm
+         parsmk parcpd paralc paraddep parcan
+         prssmcpd prsalc prscan
+         eversmk dailysmk cpd ftnd alc alcmonth audit can cupit1 cupit2 ;
+         MISSING * ;
+         USEVARIABLES sex age C1 C2 C3 C4 C5 C6 C7 C8 C9 C10
+         rel_rej rel_warm
+         prssmcpd
+         cpd dailysmk ftnd ;
+         CATEGORICAL ARE dailysmk ;
+
+      ANALYSIS: estimator=MLR ;
+
+      MODEL:
+         !Latent factors
+         F3rel BY rel_rej-rel_warm*(1) ;
+         F3rel@1 ;
+         Fsmk BY cpd dailysmk ftnd ;
+
+         !Main effects
+         Fsmk ON F3rel prssmcpd ;
+         Fsmk ON sex age C1 C2 C3 C4 C5 C6 C7 C8 C9 C10  ;
+
+         F3rel ON sex age ;
+
+       OUTPUT:
+         SAMPSTAT CINTERVAL stdyx ;
+
+
+
+
+*** WARNING
+  Data set contains cases with missing on x-variables.
+  These cases were not included in the analysis.
+  Number of cases with missing on x-variables:  44
+*** WARNING
+  Data set contains cases with missing on all variables except
+  x-variables.  These cases were not included in the analysis.
+  Number of cases with missing on all variables except x-variables:  4
+   2 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                        1645
+
+Number of dependent variables                                    5
+Number of independent variables                                 13
+Number of continuous latent variables                            2
+
+Observed dependent variables
+
+  Continuous
+   REL_REJ     REL_WARM    CPD         FTND
+
+  Binary and ordered categorical (ordinal)
+   DAILYSMK
+
+Observed independent variables
+   SEX         AGE         C1          C2          C3          C4
+   C5          C6          C7          C8          C9          C10
+   PRSSMCPD
+
+Continuous latent variables
+   F3REL       FSMK
+
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Optimization Specifications for the Quasi-Newton Algorithm for
+Continuous Outcomes
+  Maximum number of iterations                                 100
+  Convergence criterion                                  0.100D-05
+Optimization Specifications for the EM Algorithm
+  Maximum number of iterations                                 500
+  Convergence criteria
+    Loglikelihood change                                 0.100D-02
+    Relative loglikelihood change                        0.100D-05
+    Derivative                                           0.100D-02
+Optimization Specifications for the M step of the EM Algorithm for
+Categorical Latent variables
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-02
+  Basis for M step termination                           ITERATION
+Optimization Specifications for the M step of the EM Algorithm for
+Censored, Binary or Ordered Categorical (Ordinal), Unordered
+Categorical (Nominal) and Count Outcomes
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-02
+  Basis for M step termination                           ITERATION
+  Maximum value for logit thresholds                            15
+  Minimum value for logit thresholds                           -15
+  Minimum expected cell size for chi-square              0.100D-01
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+Optimization algorithm                                         EMA
+Integration Specifications
+  Type                                                    STANDARD
+  Number of integration points                                  15
+  Dimensions of numerical integration                            1
+  Adaptive quadrature                                           ON
+Link                                                         LOGIT
+Cholesky                                                       OFF
+
+Input data file(s)
+  \\CNAS.RU.NL\U642157\Documents\6 TRAILS\datasets\full.csv
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns             6
+     Number of y missing data patterns           6
+     Number of u missing data patterns           2
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT
+
+
+           Covariance Coverage
+              DAILYSMK      REL_REJ       REL_WARM      CPD           FTND
+              ________      ________      ________      ________      ________
+ DAILYSMK       0.799
+ REL_REJ        0.796         0.996
+ REL_WARM       0.796         0.996         0.997
+ CPD            0.321         0.319         0.319         0.321
+ FTND           0.799         0.796         0.796         0.321         0.799
+ SEX            0.799         0.996         0.997         0.321         0.799
+ AGE            0.799         0.996         0.997         0.321         0.799
+ C1             0.799         0.996         0.997         0.321         0.799
+ C2             0.799         0.996         0.997         0.321         0.799
+ C3             0.799         0.996         0.997         0.321         0.799
+ C4             0.799         0.996         0.997         0.321         0.799
+ C5             0.799         0.996         0.997         0.321         0.799
+ C6             0.799         0.996         0.997         0.321         0.799
+ C7             0.799         0.996         0.997         0.321         0.799
+ C8             0.799         0.996         0.997         0.321         0.799
+ C9             0.799         0.996         0.997         0.321         0.799
+ C10            0.799         0.996         0.997         0.321         0.799
+ PRSSMCPD       0.799         0.996         0.997         0.321         0.799
+
+
+           Covariance Coverage
+              SEX           AGE           C1            C2            C3
+              ________      ________      ________      ________      ________
+ SEX            1.000
+ AGE            1.000         1.000
+ C1             1.000         1.000         1.000
+ C2             1.000         1.000         1.000         1.000
+ C3             1.000         1.000         1.000         1.000         1.000
+ C4             1.000         1.000         1.000         1.000         1.000
+ C5             1.000         1.000         1.000         1.000         1.000
+ C6             1.000         1.000         1.000         1.000         1.000
+ C7             1.000         1.000         1.000         1.000         1.000
+ C8             1.000         1.000         1.000         1.000         1.000
+ C9             1.000         1.000         1.000         1.000         1.000
+ C10            1.000         1.000         1.000         1.000         1.000
+ PRSSMCPD       1.000         1.000         1.000         1.000         1.000
+
+
+           Covariance Coverage
+              C4            C5            C6            C7            C8
+              ________      ________      ________      ________      ________
+ C4             1.000
+ C5             1.000         1.000
+ C6             1.000         1.000         1.000
+ C7             1.000         1.000         1.000         1.000
+ C8             1.000         1.000         1.000         1.000         1.000
+ C9             1.000         1.000         1.000         1.000         1.000
+ C10            1.000         1.000         1.000         1.000         1.000
+ PRSSMCPD       1.000         1.000         1.000         1.000         1.000
+
+
+           Covariance Coverage
+              C9            C10           PRSSMCPD
+              ________      ________      ________
+ C9             1.000
+ C10            1.000         1.000
+ PRSSMCPD       1.000         1.000         1.000
+
+
+     PROPORTION OF DATA PRESENT FOR U
+
+
+           Covariance Coverage
+              DAILYSMK
+              ________
+ DAILYSMK       0.799
+
+
+     PROPORTION OF DATA PRESENT FOR Y
+
+
+           Covariance Coverage
+              REL_REJ       REL_WARM      CPD           FTND          SEX
+              ________      ________      ________      ________      ________
+ REL_REJ        0.996
+ REL_WARM       0.996         0.997
+ CPD            0.319         0.319         0.321
+ FTND           0.796         0.796         0.321         0.799
+ SEX            0.996         0.997         0.321         0.799         1.000
+ AGE            0.996         0.997         0.321         0.799         1.000
+ C1             0.996         0.997         0.321         0.799         1.000
+ C2             0.996         0.997         0.321         0.799         1.000
+ C3             0.996         0.997         0.321         0.799         1.000
+ C4             0.996         0.997         0.321         0.799         1.000
+ C5             0.996         0.997         0.321         0.799         1.000
+ C6             0.996         0.997         0.321         0.799         1.000
+ C7             0.996         0.997         0.321         0.799         1.000
+ C8             0.996         0.997         0.321         0.799         1.000
+ C9             0.996         0.997         0.321         0.799         1.000
+ C10            0.996         0.997         0.321         0.799         1.000
+ PRSSMCPD       0.996         0.997         0.321         0.799         1.000
+
+
+           Covariance Coverage
+              AGE           C1            C2            C3            C4
+              ________      ________      ________      ________      ________
+ AGE            1.000
+ C1             1.000         1.000
+ C2             1.000         1.000         1.000
+ C3             1.000         1.000         1.000         1.000
+ C4             1.000         1.000         1.000         1.000         1.000
+ C5             1.000         1.000         1.000         1.000         1.000
+ C6             1.000         1.000         1.000         1.000         1.000
+ C7             1.000         1.000         1.000         1.000         1.000
+ C8             1.000         1.000         1.000         1.000         1.000
+ C9             1.000         1.000         1.000         1.000         1.000
+ C10            1.000         1.000         1.000         1.000         1.000
+ PRSSMCPD       1.000         1.000         1.000         1.000         1.000
+
+
+           Covariance Coverage
+              C5            C6            C7            C8            C9
+              ________      ________      ________      ________      ________
+ C5             1.000
+ C6             1.000         1.000
+ C7             1.000         1.000         1.000
+ C8             1.000         1.000         1.000         1.000
+ C9             1.000         1.000         1.000         1.000         1.000
+ C10            1.000         1.000         1.000         1.000         1.000
+ PRSSMCPD       1.000         1.000         1.000         1.000         1.000
+
+
+           Covariance Coverage
+              C10           PRSSMCPD
+              ________      ________
+ C10            1.000
+ PRSSMCPD       1.000         1.000
+
+
+UNIVARIATE PROPORTIONS AND COUNTS FOR CATEGORICAL VARIABLES
+
+    DAILYSMK
+      Category 1    0.758          997.000
+      Category 2    0.242          318.000
+
+
+SAMPLE STATISTICS
+
+
+     ESTIMATED SAMPLE STATISTICS
+
+
+           Means
+              REL_REJ       REL_WARM      CPD           FTND          SEX
+              ________      ________      ________      ________      ________
+                0.020        -0.036        -0.414        -0.009         0.521
+
+
+           Means
+              AGE           C1            C2            C3            C4
+              ________      ________      ________      ________      ________
+                0.000        -0.008         0.021         0.015        -0.058
+
+
+           Means
+              C5            C6            C7            C8            C9
+              ________      ________      ________      ________      ________
+               -0.017         0.003        -0.024        -0.004         0.018
+
+
+           Means
+              C10           PRSSMCPD
+              ________      ________
+                0.028         0.013
+
+
+           Covariances
+              REL_REJ       REL_WARM      CPD           FTND          SEX
+              ________      ________      ________      ________      ________
+ REL_REJ        0.959
+ REL_WARM       0.331         0.952
+ CPD            0.092         0.064         0.818
+ FTND           0.083         0.067         0.609         0.972
+ SEX            0.076         0.070         0.006         0.009         0.250
+ AGE            0.010        -0.009         0.052         0.109         0.038
+ C1            -0.024        -0.028         0.016         0.013        -0.016
+ C2            -0.028         0.019         0.028         0.015        -0.003
+ C3             0.019        -0.018        -0.001         0.039        -0.020
+ C4             0.009         0.014        -0.028        -0.004         0.002
+ C5             0.015        -0.012        -0.044        -0.033        -0.007
+ C6            -0.012        -0.028        -0.037         0.017         0.005
+ C7            -0.001        -0.038        -0.010         0.016         0.006
+ C8             0.022         0.040        -0.011        -0.019         0.001
+ C9             0.032         0.028        -0.033        -0.008         0.012
+ C10            0.032         0.010         0.022         0.006         0.000
+ PRSSMCPD       0.076         0.035         0.234         0.155         0.004
+
+
+           Covariances
+              AGE           C1            C2            C3            C4
+              ________      ________      ________      ________      ________
+ AGE            0.998
+ C1             0.048         0.915
+ C2             0.023         0.223         0.472
+ C3             0.035         0.078        -0.169         0.917
+ C4            -0.014         0.041         0.000        -0.016         0.502
+ C5             0.008        -0.002        -0.007        -0.027        -0.031
+ C6             0.013        -0.003         0.054        -0.032        -0.010
+ C7            -0.013        -0.011        -0.022        -0.058         0.036
+ C8             0.022         0.007         0.036        -0.048        -0.044
+ C9            -0.030        -0.011        -0.014        -0.037         0.012
+ C10           -0.018         0.026        -0.014        -0.010         0.025
+ PRSSMCPD      -0.011         0.011        -0.008         0.039         0.023
+
+
+           Covariances
+              C5            C6            C7            C8            C9
+              ________      ________      ________      ________      ________
+ C5             0.492
+ C6            -0.083         0.550
+ C7             0.023         0.016         0.573
+ C8             0.031        -0.013        -0.026         0.551
+ C9            -0.024         0.004         0.036        -0.014         0.568
+ C10            0.010        -0.025         0.006         0.030         0.030
+ PRSSMCPD      -0.031        -0.048        -0.027        -0.029         0.008
+
+
+           Covariances
+              C10           PRSSMCPD
+              ________      ________
+ C10            0.550
+ PRSSMCPD       0.024         1.009
+
+
+           Correlations
+              REL_REJ       REL_WARM      CPD           FTND          SEX
+              ________      ________      ________      ________      ________
+ REL_REJ        1.000
+ REL_WARM       0.347         1.000
+ CPD            0.104         0.073         1.000
+ FTND           0.086         0.069         0.683         1.000
+ SEX            0.156         0.144         0.012         0.019         1.000
+ AGE            0.010        -0.009         0.058         0.110         0.076
+ C1            -0.025        -0.030         0.019         0.014        -0.033
+ C2            -0.041         0.028         0.045         0.022        -0.008
+ C3             0.020        -0.019        -0.001         0.042        -0.043
+ C4             0.012         0.020        -0.043        -0.006         0.005
+ C5             0.022        -0.018        -0.069        -0.048        -0.019
+ C6            -0.017        -0.038        -0.055         0.024         0.013
+ C7            -0.002        -0.051        -0.014         0.022         0.016
+ C8             0.031         0.055        -0.017        -0.026         0.001
+ C9             0.043         0.039        -0.048        -0.011         0.032
+ C10            0.044         0.014         0.033         0.008         0.000
+ PRSSMCPD       0.078         0.035         0.258         0.157         0.007
+
+
+           Correlations
+              AGE           C1            C2            C3            C4
+              ________      ________      ________      ________      ________
+ AGE            1.000
+ C1             0.050         1.000
+ C2             0.033         0.340         1.000
+ C3             0.036         0.085        -0.257         1.000
+ C4            -0.019         0.060         0.000        -0.023         1.000
+ C5             0.012        -0.003        -0.014        -0.041        -0.062
+ C6             0.017        -0.004         0.106        -0.045        -0.019
+ C7            -0.018        -0.016        -0.043        -0.079         0.068
+ C8             0.029         0.009         0.070        -0.068        -0.083
+ C9            -0.039        -0.016        -0.027        -0.051         0.022
+ C10           -0.025         0.036        -0.028        -0.014         0.048
+ PRSSMCPD      -0.011         0.011        -0.011         0.041         0.032
+
+
+           Correlations
+              C5            C6            C7            C8            C9
+              ________      ________      ________      ________      ________
+ C5             1.000
+ C6            -0.159         1.000
+ C7             0.043         0.028         1.000
+ C8             0.060        -0.024        -0.046         1.000
+ C9            -0.045         0.007         0.062        -0.024         1.000
+ C10            0.019        -0.045         0.010         0.054         0.053
+ PRSSMCPD      -0.044        -0.064        -0.036        -0.039         0.011
+
+
+           Correlations
+              C10           PRSSMCPD
+              ________      ________
+ C10            1.000
+ PRSSMCPD       0.032         1.000
+
+
+     MAXIMUM LOG-LIKELIHOOD VALUE FOR THE UNRESTRICTED (H1) MODEL IS -31338.769
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     REL_REJ               0.020       1.270      -1.567    0.61%      -0.741     -0.374     -0.191
+            1639.000       0.959       2.534       4.765    0.06%       0.085      0.635
+     REL_WARM             -0.036       0.726      -1.589    0.85%      -0.929     -0.490     -0.215
+            1640.000       0.952       0.158       4.017    0.06%       0.060      0.774
+     CPD                  -0.068       0.076      -1.337   28.60%      -1.337     -0.568      0.201
+             528.000       1.017      -1.308       1.740    6.44%       0.201      0.971
+     FTND                 -0.023       2.416      -0.469   77.34%      -0.469     -0.469     -0.469
+            1315.000       0.971       5.428       5.452    0.08%      -0.469      0.123
+     SEX                   0.521      -0.084       0.000   47.90%       0.000      0.000      1.000
+            1645.000       0.250      -1.993       1.000   52.10%       1.000      1.000
+     AGE                   0.000       0.388      -2.386    1.03%      -0.963     -0.963      0.461
+            1645.000       0.998      -0.574       3.308    0.12%       0.461      0.461
+     C1                   -0.008       4.668      -1.078    0.06%      -0.466     -0.274     -0.191
+            1645.000       0.915      26.687       7.970    0.06%      -0.109      0.165
+     C2                    0.021       2.872      -2.219    0.06%      -0.474     -0.148     -0.026
+            1645.000       0.472      23.279       6.647    0.06%       0.129      0.471
+     C3                    0.015       1.628      -5.903    0.06%      -0.550     -0.205     -0.054
+            1645.000       0.917      14.246       7.023    0.06%       0.112      0.445
+     C4                   -0.058       0.942      -2.124    0.06%      -0.641     -0.229     -0.060
+            1645.000       0.502      10.408       8.131    0.06%       0.111      0.503
+     C5                   -0.017       0.057      -2.454    0.06%      -0.591     -0.212     -0.023
+            1645.000       0.492       0.117       2.382    0.06%       0.151      0.565
+     C6                    0.003      -0.119      -4.142    0.06%      -0.601     -0.183     -0.004
+            1645.000       0.550       0.843       2.916    0.06%       0.185      0.601
+     C7                   -0.024      -0.197      -3.734    0.06%      -0.657     -0.211      0.012
+            1645.000       0.573       0.440       2.063    0.06%       0.182      0.611
+     C8                   -0.004      -0.183      -4.189    0.06%      -0.653     -0.171      0.006
+            1645.000       0.551       0.517       2.570    0.06%       0.196      0.604
+     C9                    0.018      -0.090      -2.592    0.06%      -0.620     -0.163      0.044
+            1645.000       0.568       0.132       2.719    0.06%       0.204      0.651
+     C10                   0.028       0.031      -3.362    0.06%      -0.604     -0.139      0.032
+            1645.000       0.550       0.537       3.648    0.06%       0.212      0.646
+     PRSSMCPD              0.013      -0.009      -2.975    0.06%      -0.858     -0.232      0.038
+            1645.000       1.009      -0.062       3.144    0.06%       0.275      0.876
+
+     WARNING: THE MODEL ESTIMATION HAS REACHED A SADDLE POINT OR A POINT WHERE THE
+     OBSERVED AND THE EXPECTED INFORMATION MATRICES DO NOT MATCH.
+     AN ADJUSTMENT TO THE ESTIMATION OF THE INFORMATION MATRIX HAS BEEN MADE.
+     THE CONDITION NUMBER IS      -0.116D-04.
+     THE PROBLEM MAY ALSO BE RESOLVED BY DECREASING THE VALUE OF THE
+     MCONVERGENCE OR LOGCRITERION OPTIONS OR BY CHANGING THE STARTING VALUES
+     OR BY INCREASING THE NUMBER OF INTEGRATION POINTS OR BY USING THE MLF ESTIMATOR.
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       29
+
+Loglikelihood
+
+          H0 Value                       -7029.356
+          H0 Scaling Correction Factor      1.1607
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                   14116.712
+          Bayesian (BIC)                 14273.471
+          Sample-Size Adjusted BIC       14181.343
+            (n* = (n + 2) / 24)
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ F3REL    BY
+    REL_REJ            0.556      0.026     21.525      0.000
+    REL_WARM           0.556      0.026     21.525      0.000
+
+ FSMK     BY
+    CPD                1.000      0.000    999.000    999.000
+    DAILYSMK          13.256      0.071    186.575      0.000
+    FTND               1.100      0.060     18.349      0.000
+
+ FSMK       ON
+    F3REL              0.104      0.039      2.712      0.007
+
+ FSMK       ON
+    PRSSMCPD           0.162      0.024      6.852      0.000
+    SEX               -0.051      0.053     -0.969      0.332
+    AGE                0.094      0.024      3.947      0.000
+    C1                -0.013      0.028     -0.455      0.649
+    C2                 0.030      0.039      0.774      0.439
+    C3                 0.028      0.028      1.000      0.317
+    C4                -0.036      0.034     -1.036      0.300
+    C5                -0.050      0.032     -1.567      0.117
+    C6                 0.015      0.033      0.444      0.657
+    C7                 0.033      0.030      1.102      0.270
+    C8                -0.032      0.031     -1.024      0.306
+    C9                -0.024      0.030     -0.804      0.422
+    C10                0.008      0.031      0.275      0.784
+
+ F3REL      ON
+    SEX                0.529      0.073      7.255      0.000
+    AGE               -0.019      0.036     -0.529      0.597
+
+ Intercepts
+    REL_REJ           -0.133      0.029     -4.535      0.000
+    REL_WARM          -0.189      0.030     -6.298      0.000
+    CPD               -0.521      0.049    -10.586      0.000
+    FTND              -0.012      0.040     -0.287      0.774
+
+ Thresholds
+    DAILYSMK$1         4.027      0.741      5.432      0.000
+
+ Residual Variances
+    REL_REJ            0.626      0.039     15.858      0.000
+    REL_WARM           0.623      0.036     17.080      0.000
+    CPD                0.243      0.030      8.179      0.000
+    FTND               0.248      0.028      9.005      0.000
+    F3REL              1.000      0.000    999.000    999.000
+    FSMK               0.548      0.039     14.039      0.000
+
+
+STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ F3REL    BY
+    REL_REJ            0.588      0.021     28.077      0.000
+    REL_WARM           0.589      0.025     23.965      0.000
+
+ FSMK     BY
+    CPD                0.843      0.021     40.535      0.000
+    DAILYSMK           0.985      0.001    998.536      0.000
+    FTND               0.863      0.018     48.999      0.000
+
+ FSMK       ON
+    F3REL              0.140      0.051      2.716      0.007
+
+ FSMK       ON
+    PRSSMCPD           0.210      0.029      7.238      0.000
+    SEX               -0.033      0.034     -0.965      0.334
+    AGE                0.121      0.031      3.928      0.000
+    C1                -0.016      0.034     -0.456      0.648
+    C2                 0.027      0.034      0.776      0.438
+    C3                 0.035      0.035      0.999      0.318
+    C4                -0.033      0.031     -1.039      0.299
+    C5                -0.045      0.029     -1.564      0.118
+    C6                 0.014      0.032      0.444      0.657
+    C7                 0.033      0.030      1.102      0.270
+    C8                -0.030      0.030     -1.023      0.306
+    C9                -0.024      0.030     -0.806      0.420
+    C10                0.008      0.030      0.275      0.784
+
+ F3REL      ON
+    SEX                0.256      0.033      7.698      0.000
+    AGE               -0.019      0.035     -0.530      0.596
+
+ Intercepts
+    REL_REJ           -0.136      0.031     -4.337      0.000
+    REL_WARM          -0.194      0.032     -6.076      0.000
+    CPD               -0.569      0.056    -10.192      0.000
+    FTND              -0.012      0.041     -0.285      0.775
+
+ Thresholds
+    DAILYSMK$1         0.387      0.071      5.482      0.000
+
+ Residual Variances
+    REL_REJ            0.654      0.025     26.553      0.000
+    REL_WARM           0.653      0.029     22.541      0.000
+    CPD                0.289      0.035      8.234      0.000
+    FTND               0.255      0.030      8.402      0.000
+    F3REL              0.935      0.017     55.388      0.000
+    FSMK               0.916      0.021     43.287      0.000
+
+
+R-SQUARE
+
+    Observed                                        Two-Tailed
+    Variable        Estimate       S.E.  Est./S.E.    P-Value
+
+    DAILYSMK           0.970      0.002    499.268      0.000
+    REL_REJ            0.346      0.025     14.039      0.000
+    REL_WARM           0.347      0.029     11.982      0.000
+    CPD                0.711      0.035     20.267      0.000
+    FTND               0.745      0.030     24.500      0.000
+
+     Latent                                         Two-Tailed
+    Variable        Estimate       S.E.  Est./S.E.    P-Value
+
+    F3REL              0.065      0.017      3.850      0.000
+    FSMK               0.084      0.021      3.955      0.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix             -0.116E-04
+       (ratio of smallest to largest eigenvalue)
+
+
+CONFIDENCE INTERVALS OF MODEL RESULTS
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+ F3REL    BY
+    REL_REJ          0.490       0.506       0.514       0.556       0.599       0.607       0.623
+    REL_WARM         0.490       0.506       0.514       0.556       0.599       0.607       0.623
+
+ FSMK     BY
+    CPD              1.000       1.000       1.000       1.000       1.000       1.000       1.000
+    DAILYSMK        13.073      13.117      13.139      13.256      13.373      13.395      13.439
+    FTND             0.945       0.982       1.001       1.100       1.198       1.217       1.254
+
+ FSMK     ON
+    F3REL            0.005       0.029       0.041       0.104       0.168       0.180       0.204
+
+ FSMK     ON
+    PRSSMCPD         0.101       0.115       0.123       0.162       0.201       0.208       0.223
+    SEX             -0.188      -0.156      -0.139      -0.051       0.036       0.053       0.085
+    AGE              0.033       0.047       0.055       0.094       0.133       0.141       0.155
+    C1              -0.084      -0.067      -0.058      -0.013       0.033       0.042       0.059
+    C2              -0.070      -0.046      -0.034       0.030       0.094       0.106       0.130
+    C3              -0.044      -0.027      -0.018       0.028       0.074       0.083       0.100
+    C4              -0.124      -0.103      -0.092      -0.036       0.021       0.032       0.053
+    C5              -0.132      -0.113      -0.103      -0.050       0.002       0.013       0.032
+    C6              -0.071      -0.051      -0.040       0.015       0.070       0.080       0.101
+    C7              -0.045      -0.026      -0.016       0.033       0.083       0.093       0.111
+    C8              -0.112      -0.092      -0.083      -0.032       0.019       0.029       0.048
+    C9              -0.103      -0.084      -0.074      -0.024       0.026       0.035       0.054
+    C10             -0.071      -0.052      -0.042       0.008       0.059       0.069       0.088
+
+ F3REL    ON
+    SEX              0.341       0.386       0.409       0.529       0.649       0.672       0.717
+    AGE             -0.112      -0.090      -0.079      -0.019       0.040       0.052       0.074
+
+ Intercepts
+    REL_REJ         -0.209      -0.191      -0.181      -0.133      -0.085      -0.076      -0.057
+    REL_WARM        -0.267      -0.248      -0.239      -0.189      -0.140      -0.130      -0.112
+    CPD             -0.648      -0.618      -0.602      -0.521      -0.440      -0.425      -0.395
+    FTND            -0.115      -0.090      -0.078      -0.012       0.055       0.067       0.092
+
+ Thresholds
+    DAILYSMK$1       2.118       2.574       2.808       4.027       5.247       5.480       5.937
+
+ Residual Variances
+    REL_REJ          0.524       0.549       0.561       0.626       0.691       0.704       0.728
+    REL_WARM         0.529       0.551       0.563       0.623       0.683       0.694       0.717
+    CPD              0.166       0.185       0.194       0.243       0.292       0.301       0.319
+    FTND             0.177       0.194       0.203       0.248       0.293       0.302       0.319
+    F3REL            1.000       1.000       1.000       1.000       1.000       1.000       1.000
+    FSMK             0.447       0.471       0.484       0.548       0.612       0.624       0.648
+
+
+CONFIDENCE INTERVALS OF STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+ F3REL    BY
+    REL_REJ          0.534       0.547       0.554       0.588       0.623       0.629       0.642
+    REL_WARM         0.526       0.541       0.549       0.589       0.630       0.637       0.652
+
+ FSMK     BY
+    CPD              0.790       0.802       0.809       0.843       0.877       0.884       0.897
+    DAILYSMK         0.982       0.983       0.983       0.985       0.986       0.987       0.987
+    FTND             0.818       0.828       0.834       0.863       0.892       0.897       0.908
+
+ FSMK     ON
+    F3REL            0.007       0.039       0.055       0.140       0.224       0.241       0.272
+
+ FSMK     ON
+    PRSSMCPD         0.135       0.153       0.162       0.210       0.258       0.267       0.285
+    SEX             -0.122      -0.101      -0.090      -0.033       0.023       0.034       0.055
+    AGE              0.042       0.061       0.071       0.121       0.172       0.182       0.201
+    C1              -0.104      -0.083      -0.072      -0.016       0.041       0.051       0.072
+    C2              -0.062      -0.041      -0.030       0.027       0.083       0.094       0.115
+    C3              -0.055      -0.033      -0.022       0.035       0.092       0.103       0.124
+    C4              -0.114      -0.094      -0.084      -0.033       0.019       0.029       0.048
+    C5              -0.120      -0.102      -0.093      -0.045       0.002       0.011       0.029
+    C6              -0.068      -0.049      -0.038       0.014       0.067       0.077       0.097
+    C7              -0.044      -0.025      -0.016       0.033       0.081       0.091       0.109
+    C8              -0.107      -0.089      -0.079      -0.030       0.018       0.028       0.046
+    C9              -0.100      -0.082      -0.072      -0.024       0.025       0.034       0.052
+    C10             -0.068      -0.050      -0.040       0.008       0.057       0.066       0.084
+
+ F3REL    ON
+    SEX              0.170       0.191       0.201       0.256       0.310       0.321       0.341
+    AGE             -0.109      -0.087      -0.076      -0.019       0.039       0.050       0.072
+
+ Intercepts
+    REL_REJ         -0.217      -0.197      -0.188      -0.136      -0.084      -0.075      -0.055
+    REL_WARM        -0.276      -0.256      -0.246      -0.194      -0.141      -0.131      -0.112
+    CPD             -0.712      -0.678      -0.660      -0.569      -0.477      -0.459      -0.425
+    FTND            -0.117      -0.092      -0.079      -0.012       0.056       0.069       0.094
+
+ Thresholds
+    DAILYSMK$1       0.205       0.249       0.271       0.387       0.503       0.525       0.569
+
+ Residual Variances
+    REL_REJ          0.591       0.606       0.614       0.654       0.695       0.702       0.718
+    REL_WARM         0.578       0.596       0.605       0.653       0.701       0.710       0.728
+    CPD              0.199       0.220       0.231       0.289       0.347       0.358       0.379
+    FTND             0.177       0.196       0.205       0.255       0.305       0.315       0.334
+    F3REL            0.892       0.902       0.907       0.935       0.963       0.968       0.978
+    FSMK             0.862       0.875       0.881       0.916       0.951       0.958       0.971
+
+
+     Beginning Time:  11:53:23
+        Ending Time:  11:53:29
+       Elapsed Time:  00:00:06
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2019 Muthen & Muthen

@@ -1,0 +1,581 @@
+Mplus VERSION 8.3
+MUTHEN & MUTHEN
+03/05/2020  12:12 PM
+
+INPUT INSTRUCTIONS
+
+    DATA:
+         FILE IS  \\CNAS.RU.NL\U642157\Documents\6 TRAILS\datasets\full.csv;
+
+    VARIABLE:
+         NAMES ARE sex age C1 C2 C3 C4 C5 C6 C7 C8 C9 C10
+         parknow pardisc parcont parsol rel_rej rel_warm
+         parsmk parcpd paralc paraddep parcan
+         prssmcpd prsalc prscan
+         eversmk dailysmk cpd ftnd alc alcmonth audit can cupit1 cupit2 ;
+         MISSING * ;
+         USEVARIABLES sex age C1 C2 C3 C4 C5 C6 C7 C8 C9 C10
+         parsmk paraddep parcan
+         prscan
+         can ;
+         CATEGORICAL ARE parsmk paraddep parcan can ;
+
+      ANALYSIS: estimator=MLR ;
+
+      MODEL:
+         !Latent factors parenting
+         F2sub BY parsmk paraddep parcan ;
+
+         !Main effects
+         can ON F2sub prscan ;
+         can ON sex age C1 C2 C3 C4 C5 C6 C7 C8 C9 C10 ;
+
+         !rGE
+         F2sub ON prscan ;
+
+         F2sub ON sex age ;
+
+       OUTPUT:
+         SAMPSTAT CINTERVAL stdyx ;
+
+
+
+
+*** WARNING
+  Data set contains cases with missing on x-variables.
+  These cases were not included in the analysis.
+  Number of cases with missing on x-variables:  44
+*** WARNING
+  Data set contains cases with missing on all variables except
+  x-variables.  These cases were not included in the analysis.
+  Number of cases with missing on all variables except x-variables:  5
+   2 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                        1644
+
+Number of dependent variables                                    4
+Number of independent variables                                 13
+Number of continuous latent variables                            1
+
+Observed dependent variables
+
+  Binary and ordered categorical (ordinal)
+   PARSMK      PARADDEP    PARCAN      CAN
+
+Observed independent variables
+   SEX         AGE         C1          C2          C3          C4
+   C5          C6          C7          C8          C9          C10
+   PRSCAN
+
+Continuous latent variables
+   F2SUB
+
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Optimization Specifications for the Quasi-Newton Algorithm for
+Continuous Outcomes
+  Maximum number of iterations                                 100
+  Convergence criterion                                  0.100D-05
+Optimization Specifications for the EM Algorithm
+  Maximum number of iterations                                 500
+  Convergence criteria
+    Loglikelihood change                                 0.100D-02
+    Relative loglikelihood change                        0.100D-05
+    Derivative                                           0.100D-02
+Optimization Specifications for the M step of the EM Algorithm for
+Categorical Latent variables
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-02
+  Basis for M step termination                           ITERATION
+Optimization Specifications for the M step of the EM Algorithm for
+Censored, Binary or Ordered Categorical (Ordinal), Unordered
+Categorical (Nominal) and Count Outcomes
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-02
+  Basis for M step termination                           ITERATION
+  Maximum value for logit thresholds                            15
+  Minimum value for logit thresholds                           -15
+  Minimum expected cell size for chi-square              0.100D-01
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+Optimization algorithm                                         EMA
+Integration Specifications
+  Type                                                    STANDARD
+  Number of integration points                                  15
+  Dimensions of numerical integration                            1
+  Adaptive quadrature                                           ON
+Link                                                         LOGIT
+Cholesky                                                        ON
+
+Input data file(s)
+  \\CNAS.RU.NL\U642157\Documents\6 TRAILS\datasets\full.csv
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns            14
+     Number of y missing data patterns           0
+     Number of u missing data patterns          14
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT FOR U
+
+
+           Covariance Coverage
+              PARSMK        PARADDEP      PARCAN        CAN
+              ________      ________      ________      ________
+ PARSMK         0.901
+ PARADDEP       0.869         0.959
+ PARCAN         0.776         0.799         0.822
+ CAN            0.716         0.760         0.672         0.790
+
+
+UNIVARIATE PROPORTIONS AND COUNTS FOR CATEGORICAL VARIABLES
+
+    PARSMK
+      Category 1    0.505          749.000
+      Category 2    0.495          733.000
+    PARADDEP
+      Category 1    0.930         1466.000
+      Category 2    0.070          110.000
+    PARCAN
+      Category 1    0.956         1292.000
+      Category 2    0.044           59.000
+    CAN
+      Category 1    0.412          535.000
+      Category 2    0.588          764.000
+
+
+SAMPLE STATISTICS
+
+
+     SAMPLE STATISTICS
+
+
+           Means
+              SEX           AGE           C1            C2            C3
+              ________      ________      ________      ________      ________
+                0.521        -0.001        -0.006         0.021         0.015
+
+
+           Means
+              C4            C5            C6            C7            C8
+              ________      ________      ________      ________      ________
+               -0.059        -0.017         0.004        -0.022        -0.004
+
+
+           Means
+              C9            C10           PRSCAN
+              ________      ________      ________
+                0.018         0.028         0.013
+
+
+           Covariances
+              SEX           AGE           C1            C2            C3
+              ________      ________      ________      ________      ________
+ SEX            0.250
+ AGE            0.035         0.994
+ C1            -0.014         0.051         0.923
+ C2            -0.003         0.021         0.229         0.475
+ C3            -0.021         0.033         0.075        -0.172         0.919
+ C4             0.001        -0.018         0.039        -0.001        -0.015
+ C5            -0.007         0.007        -0.003        -0.007        -0.027
+ C6             0.004         0.013         0.001         0.056        -0.034
+ C7             0.006        -0.015        -0.012        -0.023        -0.058
+ C8             0.001         0.024         0.007         0.037        -0.048
+ C9             0.012        -0.027        -0.012        -0.014        -0.037
+ C10            0.000        -0.018         0.027        -0.013        -0.010
+ PRSCAN        -0.005         0.019         0.152         0.033         0.028
+
+
+           Covariances
+              C4            C5            C6            C7            C8
+              ________      ________      ________      ________      ________
+ C4             0.500
+ C5            -0.031         0.492
+ C6            -0.011        -0.083         0.551
+ C7             0.039         0.022         0.016         0.573
+ C8            -0.043         0.031        -0.012        -0.025         0.550
+ C9             0.012        -0.024         0.005         0.035        -0.014
+ C10            0.025         0.010        -0.024         0.006         0.030
+ PRSCAN         0.008        -0.018        -0.009         0.001        -0.019
+
+
+           Covariances
+              C9            C10           PRSCAN
+              ________      ________      ________
+ C9             0.568
+ C10            0.029         0.551
+ PRSCAN        -0.006        -0.005         0.981
+
+
+           Correlations
+              SEX           AGE           C1            C2            C3
+              ________      ________      ________      ________      ________
+ SEX            1.000
+ AGE            0.070         1.000
+ C1            -0.030         0.053         1.000
+ C2            -0.008         0.031         0.346         1.000
+ C3            -0.043         0.034         0.082        -0.260         1.000
+ C4             0.002        -0.025         0.058        -0.002        -0.022
+ C5            -0.020         0.011        -0.004        -0.015        -0.041
+ C6             0.012         0.017         0.001         0.109        -0.048
+ C7             0.017        -0.020        -0.017        -0.044        -0.079
+ C8             0.003         0.032         0.009         0.071        -0.068
+ C9             0.032        -0.036        -0.016        -0.026        -0.051
+ C10            0.001        -0.024         0.037        -0.026        -0.014
+ PRSCAN        -0.010         0.020         0.159         0.049         0.030
+
+
+           Correlations
+              C4            C5            C6            C7            C8
+              ________      ________      ________      ________      ________
+ C4             1.000
+ C5            -0.063         1.000
+ C6            -0.022        -0.160         1.000
+ C7             0.072         0.042         0.028         1.000
+ C8            -0.082         0.060        -0.023        -0.045         1.000
+ C9             0.022        -0.045         0.009         0.061        -0.026
+ C10            0.048         0.018        -0.043         0.010         0.054
+ PRSCAN         0.012        -0.026        -0.012         0.001        -0.026
+
+
+           Correlations
+              C9            C10           PRSCAN
+              ________      ________      ________
+ C9             1.000
+ C10            0.052         1.000
+ PRSCAN        -0.008        -0.007         1.000
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     SEX                   0.521      -0.083       0.000   47.93%       0.000      0.000      1.000
+            1644.000       0.250      -1.993       1.000   52.07%       1.000      1.000
+     AGE                  -0.001       0.395      -2.386    0.97%      -0.963     -0.963      0.461
+            1644.000       0.994      -0.577       3.308    0.12%       0.461      0.461
+     C1                   -0.006       4.637      -1.078    0.06%      -0.466     -0.275     -0.192
+            1644.000       0.923      26.282       7.970    0.06%      -0.109      0.165
+     C2                    0.021       2.870      -2.219    0.06%      -0.473     -0.148     -0.026
+            1644.000       0.475      23.072       6.647    0.06%       0.128      0.471
+     C3                    0.015       1.623      -5.903    0.06%      -0.552     -0.205     -0.053
+            1644.000       0.919      14.188       7.023    0.06%       0.106      0.446
+     C4                   -0.059       0.951      -2.124    0.06%      -0.642     -0.229     -0.061
+            1644.000       0.500      10.499       8.131    0.06%       0.109      0.502
+     C5                   -0.017       0.058      -2.454    0.06%      -0.590     -0.211     -0.025
+            1644.000       0.492       0.121       2.382    0.06%       0.150      0.565
+     C6                    0.004      -0.120      -4.142    0.06%      -0.601     -0.180      0.002
+            1644.000       0.551       0.837       2.916    0.06%       0.189      0.603
+     C7                   -0.022      -0.202      -3.734    0.06%      -0.653     -0.210      0.016
+            1644.000       0.573       0.446       2.063    0.06%       0.183      0.611
+     C8                   -0.004      -0.184      -4.189    0.06%      -0.653     -0.170      0.004
+            1644.000       0.550       0.526       2.570    0.06%       0.196      0.603
+     C9                    0.018      -0.092      -2.592    0.06%      -0.620     -0.162      0.043
+            1644.000       0.568       0.136       2.719    0.06%       0.203      0.651
+     C10                   0.028       0.031      -3.362    0.06%      -0.604     -0.139      0.032
+            1644.000       0.551       0.535       3.648    0.06%       0.212      0.646
+     PRSCAN                0.013       0.011      -2.828    0.06%      -0.802     -0.246      0.003
+            1644.000       0.981      -0.029       4.235    0.06%       0.248      0.857
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       24
+
+Loglikelihood
+
+          H0 Value                       -2450.960
+          H0 Scaling Correction Factor      1.0145
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                    4949.920
+          Bayesian (BIC)                  5079.637
+          Sample-Size Adjusted BIC        5003.393
+            (n* = (n + 2) / 24)
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ F2SUB    BY
+    PARSMK             1.000      0.000    999.000    999.000
+    PARADDEP           1.298      0.377      3.448      0.001
+    PARCAN             2.011      0.953      2.109      0.035
+
+ F2SUB      ON
+    PRSCAN             0.095      0.058      1.634      0.102
+    SEX               -0.027      0.114     -0.240      0.811
+    AGE                0.129      0.062      2.069      0.039
+
+ CAN        ON
+    F2SUB              0.293      0.145      2.017      0.044
+
+ CAN        ON
+    PRSCAN             0.268      0.065      4.102      0.000
+    SEX                0.285      0.123      2.323      0.020
+    AGE                0.194      0.062      3.152      0.002
+    C1                -0.097      0.080     -1.202      0.229
+    C2                -0.122      0.102     -1.189      0.234
+    C3                 0.030      0.067      0.441      0.659
+    C4                 0.090      0.089      1.011      0.312
+    C5                -0.037      0.087     -0.426      0.670
+    C6                 0.029      0.083      0.349      0.727
+    C7                 0.174      0.078      2.223      0.026
+    C8                -0.166      0.081     -2.045      0.041
+    C9                -0.040      0.080     -0.501      0.616
+    C10                0.128      0.082      1.567      0.117
+
+ Thresholds
+    PARSMK$1           0.003      0.093      0.027      0.978
+    PARADDEP$1         3.694      0.406      9.096      0.000
+    PARCAN$1           5.425      1.287      4.215      0.000
+    CAN$1             -0.275      0.083     -3.293      0.001
+
+ Residual Variances
+    F2SUB              1.880      0.849      2.213      0.027
+
+
+LOGISTIC REGRESSION ODDS RATIO RESULTS
+
+                                         (Est. - 1) Two-Tailed
+                    Estimate       S.E.     / S.E.    P-Value
+
+ CAN        ON
+    F2SUB              1.340      0.194      1.749      0.080
+
+ CAN        ON
+    PRSCAN             1.308      0.085      3.598      0.000
+    SEX                1.329      0.163      2.022      0.043
+    AGE                1.215      0.075      2.865      0.004
+    C1                 0.908      0.073     -1.262      0.207
+    C2                 0.885      0.091     -1.264      0.206
+    C3                 1.030      0.069      0.434      0.664
+    C4                 1.095      0.098      0.966      0.334
+    C5                 0.964      0.084     -0.434      0.665
+    C6                 1.029      0.085      0.344      0.731
+    C7                 1.190      0.093      2.041      0.041
+    C8                 0.847      0.069     -2.226      0.026
+    C9                 0.961      0.076     -0.511      0.609
+    C10                1.137      0.093      1.471      0.141
+
+
+STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ F2SUB    BY
+    PARSMK             0.606      0.086      7.042      0.000
+    PARADDEP           0.703      0.073      9.626      0.000
+    PARCAN             0.837      0.086      9.697      0.000
+
+ F2SUB      ON
+    PRSCAN             0.068      0.045      1.506      0.132
+    SEX               -0.010      0.041     -0.240      0.810
+    AGE                0.093      0.042      2.214      0.027
+
+ CAN        ON
+    F2SUB              0.211      0.067      3.146      0.002
+
+ CAN        ON
+    PRSCAN             0.139      0.033      4.145      0.000
+    SEX                0.074      0.032      2.343      0.019
+    AGE                0.101      0.032      3.156      0.002
+    C1                -0.048      0.040     -1.205      0.228
+    C2                -0.044      0.037     -1.190      0.234
+    C3                 0.015      0.034      0.441      0.659
+    C4                 0.033      0.033      1.011      0.312
+    C5                -0.014      0.032     -0.425      0.670
+    C6                 0.011      0.032      0.349      0.727
+    C7                 0.069      0.031      2.233      0.026
+    C8                -0.064      0.031     -2.053      0.040
+    C9                -0.016      0.031     -0.501      0.616
+    C10                0.050      0.032      1.570      0.116
+
+ Thresholds
+    PARSMK$1           0.001      0.041      0.027      0.978
+    PARADDEP$1         1.449      0.058     24.910      0.000
+    PARCAN$1           1.636      0.072     22.752      0.000
+    CAN$1             -0.143      0.044     -3.290      0.001
+
+ Residual Variances
+    F2SUB              0.986      0.010     95.896      0.000
+
+
+R-SQUARE
+
+    Observed                                        Two-Tailed
+    Variable        Estimate       S.E.  Est./S.E.    P-Value
+
+    PARSMK             0.367      0.104      3.521      0.000
+    PARADDEP           0.494      0.103      4.813      0.000
+    PARCAN             0.701      0.145      4.849      0.000
+    CAN                0.105      0.032      3.301      0.001
+
+     Latent                                         Two-Tailed
+    Variable        Estimate       S.E.  Est./S.E.    P-Value
+
+    F2SUB              0.014      0.010      1.316      0.188
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.949E-03
+       (ratio of smallest to largest eigenvalue)
+
+
+CONFIDENCE INTERVALS OF MODEL RESULTS
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+ F2SUB    BY
+    PARSMK           1.000       1.000       1.000       1.000       1.000       1.000       1.000
+    PARADDEP         0.328       0.560       0.679       1.298       1.918       2.037       2.269
+    PARCAN          -0.445       0.142       0.442       2.011       3.579       3.879       4.466
+
+ F2SUB    ON
+    PRSCAN          -0.055      -0.019      -0.001       0.095       0.191       0.210       0.246
+    SEX             -0.321      -0.251      -0.215      -0.027       0.160       0.196       0.266
+    AGE             -0.032       0.007       0.026       0.129       0.231       0.250       0.289
+
+ CAN      ON
+    F2SUB           -0.081       0.008       0.054       0.293       0.531       0.577       0.666
+
+ CAN      ON
+    PRSCAN           0.100       0.140       0.161       0.268       0.376       0.396       0.437
+    SEX             -0.031       0.044       0.083       0.285       0.486       0.525       0.600
+    AGE              0.036       0.074       0.093       0.194       0.296       0.315       0.353
+    C1              -0.304      -0.254      -0.229      -0.097       0.036       0.061       0.110
+    C2              -0.385      -0.322      -0.290      -0.122       0.047       0.079       0.142
+    C3              -0.144      -0.102      -0.081       0.030       0.140       0.161       0.203
+    C4              -0.140      -0.085      -0.057       0.090       0.238       0.266       0.321
+    C5              -0.262      -0.208      -0.181      -0.037       0.106       0.134       0.188
+    C6              -0.184      -0.133      -0.107       0.029       0.165       0.191       0.242
+    C7              -0.028       0.021       0.045       0.174       0.303       0.327       0.375
+    C8              -0.376      -0.326      -0.300      -0.166      -0.033      -0.007       0.043
+    C9              -0.245      -0.196      -0.171      -0.040       0.091       0.116       0.165
+    C10             -0.083      -0.032      -0.006       0.128       0.263       0.289       0.339
+
+ Thresholds
+    PARSMK$1        -0.238      -0.181      -0.151       0.003       0.156       0.186       0.243
+    PARADDEP$1       2.648       2.898       3.026       3.694       4.362       4.490       4.740
+    PARCAN$1         2.110       2.902       3.308       5.425       7.542       7.948       8.741
+    CAN$1           -0.489      -0.438      -0.412      -0.275      -0.137      -0.111      -0.060
+
+ Residual Variances
+    F2SUB           -0.308       0.215       0.482       1.880       3.277       3.545       4.068
+
+
+CONFIDENCE INTERVALS FOR THE LOGISTIC REGRESSION ODDS RATIO RESULTS
+
+ CAN      ON
+    F2SUB            0.922       1.008       1.055       1.340       1.701       1.780       1.947
+
+ CAN      ON
+    PRSCAN           1.105       1.150       1.174       1.308       1.456       1.486       1.548
+    SEX              0.969       1.045       1.087       1.329       1.626       1.690       1.823
+    AGE              1.036       1.076       1.097       1.215       1.344       1.371       1.424
+    C1               0.738       0.775       0.795       0.908       1.036       1.063       1.117
+    C2               0.680       0.725       0.748       0.885       1.048       1.082       1.152
+    C3               0.866       0.903       0.922       1.030       1.151       1.175       1.225
+    C4               0.869       0.919       0.945       1.095       1.268       1.304       1.378
+    C5               0.769       0.812       0.835       0.964       1.112       1.143       1.207
+    C6               0.832       0.875       0.898       1.029       1.179       1.210       1.274
+    C7               0.973       1.021       1.046       1.190       1.353       1.387       1.455
+    C8               0.686       0.722       0.741       0.847       0.968       0.993       1.044
+    C9               0.783       0.822       0.843       0.961       1.095       1.123       1.180
+    C10              0.921       0.968       0.994       1.137       1.301       1.335       1.404
+
+
+CONFIDENCE INTERVALS OF STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+ F2SUB    BY
+    PARSMK           0.384       0.437       0.464       0.606       0.747       0.774       0.827
+    PARADDEP         0.515       0.560       0.583       0.703       0.823       0.846       0.891
+    PARCAN           0.615       0.668       0.695       0.837       0.979       1.006       1.059
+
+ F2SUB    ON
+    PRSCAN          -0.049      -0.021      -0.006       0.068       0.143       0.157       0.185
+    SEX             -0.116      -0.091      -0.078      -0.010       0.058       0.071       0.096
+    AGE             -0.015       0.011       0.024       0.093       0.162       0.175       0.201
+
+ CAN      ON
+    F2SUB            0.038       0.079       0.101       0.211       0.321       0.342       0.383
+
+ CAN      ON
+    PRSCAN           0.052       0.073       0.084       0.139       0.194       0.204       0.225
+    SEX             -0.007       0.012       0.022       0.074       0.126       0.136       0.156
+    AGE              0.019       0.038       0.048       0.101       0.154       0.164       0.184
+    C1              -0.152      -0.127      -0.115      -0.048       0.018       0.030       0.055
+    C2              -0.138      -0.116      -0.104      -0.044       0.017       0.028       0.051
+    C3              -0.072      -0.051      -0.040       0.015       0.070       0.081       0.101
+    C4              -0.052      -0.031      -0.021       0.033       0.088       0.098       0.118
+    C5              -0.096      -0.076      -0.066      -0.014       0.039       0.049       0.069
+    C6              -0.071      -0.052      -0.042       0.011       0.064       0.074       0.094
+    C7              -0.011       0.008       0.018       0.069       0.119       0.129       0.148
+    C8              -0.145      -0.126      -0.116      -0.064      -0.013      -0.003       0.016
+    C9              -0.096      -0.077      -0.067      -0.016       0.036       0.046       0.065
+    C10             -0.032      -0.012      -0.002       0.050       0.102       0.112       0.131
+
+ Thresholds
+    PARSMK$1        -0.105      -0.079      -0.066       0.001       0.069       0.082       0.107
+    PARADDEP$1       1.299       1.335       1.353       1.449       1.544       1.563       1.598
+    PARCAN$1         1.451       1.495       1.518       1.636       1.755       1.777       1.822
+    CAN$1           -0.255      -0.229      -0.215      -0.143      -0.072      -0.058      -0.031
+
+ Residual Variances
+    F2SUB            0.960       0.966       0.970       0.986       1.003       1.007       1.013
+
+
+     Beginning Time:  12:12:52
+        Ending Time:  12:12:56
+       Elapsed Time:  00:00:04
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2019 Muthen & Muthen

@@ -1,0 +1,547 @@
+Mplus VERSION 8.3
+MUTHEN & MUTHEN
+03/05/2020   3:38 PM
+
+INPUT INSTRUCTIONS
+
+    DATA:
+         FILE IS  \\CNAS.RU.NL\U642157\Documents\6 TRAILS\datasets\full.csv;
+
+    VARIABLE:
+         NAMES ARE sex age C1 C2 C3 C4 C5 C6 C7 C8 C9 C10
+         parknow pardisc parcont parsol rel_rej rel_warm
+         parsmk parcpd paralc paraddep parcan
+         prssmcpd prsalc prscan
+         eversmk dailysmk cpd ftnd alc alcmonth audit can cupit1 cupit2 ;
+         MISSING * ;
+         USEVARIABLES sex age C1 C2 C3 C4 C5 C6 C7 C8 C9 C10
+         parknow pardisc parcont parsol
+         prscan
+         can ;
+         CATEGORICAL ARE can ;
+
+               !In order to get CFI, TLI and RMSEA for this model:
+      ANALYSIS: estimator=WLSMV ;
+
+
+      MODEL:
+         !Latent factors parenting
+         F1inv BY parknow pardisc parcont parsol ;
+
+         !Main effects
+         can ON F1inv prscan ;
+         can ON sex age C1 C2 C3 C4 C5 C6 C7 C8 C9 C10  ;
+
+         F1inv ON sex age ;
+         parknow WITH pardisc ;
+
+       OUTPUT:
+         SAMPSTAT CINTERVAL STDYX modindices;
+
+
+
+
+*** WARNING
+  Data set contains cases with missing on x-variables.
+  These cases were not included in the analysis.
+  Number of cases with missing on x-variables:  44
+*** WARNING
+  Data set contains cases with missing on all variables except
+  x-variables.  These cases were not included in the analysis.
+  Number of cases with missing on all variables except x-variables:  6
+   2 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                        1643
+
+Number of dependent variables                                    5
+Number of independent variables                                 13
+Number of continuous latent variables                            1
+
+Observed dependent variables
+
+  Continuous
+   PARKNOW     PARDISC     PARCONT     PARSOL
+
+  Binary and ordered categorical (ordinal)
+   CAN
+
+Observed independent variables
+   SEX         AGE         C1          C2          C3          C4
+   C5          C6          C7          C8          C9          C10
+   PRSCAN
+
+Continuous latent variables
+   F1INV
+
+
+Estimator                                                    WLSMV
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+Parameterization                                             DELTA
+Link                                                        PROBIT
+
+Input data file(s)
+  \\CNAS.RU.NL\U642157\Documents\6 TRAILS\datasets\full.csv
+
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns             9
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT
+
+
+           Covariance Coverage
+              PARKNOW       PARDISC       PARCONT       PARSOL        CAN
+              ________      ________      ________      ________      ________
+ PARKNOW        0.970
+ PARDISC        0.925         0.954
+ PARCONT        0.925         0.953         0.954
+ PARSOL         0.925         0.954         0.953         0.954
+ CAN            0.770         0.767         0.767         0.767         0.791
+
+
+UNIVARIATE PROPORTIONS AND COUNTS FOR CATEGORICAL VARIABLES
+
+    CAN
+      Category 1    0.412          535.000
+      Category 2    0.588          764.000
+
+
+SAMPLE STATISTICS
+
+
+     ESTIMATED SAMPLE STATISTICS
+
+
+           MEANS/INTERCEPTS/THRESHOLDS
+              PARKNOW       PARDISC       PARCONT       PARSOL        CAN$1
+              ________      ________      ________      ________      ________
+               -0.028        -0.193        -0.246        -0.248        -0.156
+
+
+           SLOPES
+              SEX           AGE           C1            C2            C3
+              ________      ________      ________      ________      ________
+ PARKNOW       -0.049         0.079        -0.016         0.038         0.053
+ PARDISC        0.349         0.037         0.015         0.021         0.000
+ PARCONT        0.506         0.106        -0.023         0.026        -0.026
+ PARSOL         0.466         0.003        -0.008         0.020        -0.043
+ CAN            0.156         0.138        -0.055        -0.069         0.017
+
+
+           SLOPES
+              C4            C5            C6            C7            C8
+              ________      ________      ________      ________      ________
+ PARKNOW        0.079         0.000         0.046         0.052        -0.002
+ PARDISC        0.055        -0.091         0.004        -0.014         0.051
+ PARCONT        0.039        -0.014         0.013         0.005         0.024
+ PARSOL         0.038        -0.024         0.021        -0.030         0.021
+ CAN            0.055        -0.029         0.017         0.108        -0.103
+
+
+           SLOPES
+              C9            C10           PRSCAN
+              ________      ________      ________
+ PARKNOW       -0.015         0.027         0.046
+ PARDISC       -0.038        -0.005         0.041
+ PARCONT        0.025         0.003         0.014
+ PARSOL        -0.027         0.009         0.010
+ CAN           -0.025         0.079         0.177
+
+
+           CORRELATION MATRIX (WITH VARIANCES ON THE DIAGONAL)
+              PARKNOW       PARDISC       PARCONT       PARSOL        CAN
+              ________      ________      ________      ________      ________
+ PARKNOW        0.941
+ PARDISC        0.335         0.941
+ PARCONT        0.244         0.273         0.921
+ PARSOL         0.236         0.432         0.475         0.914
+ CAN            0.209         0.249         0.039        -0.012
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     PARKNOW              -0.056       1.540      -0.867   33.19%      -0.867     -0.674     -0.480
+            1594.000       0.958       2.266       4.742    0.06%      -0.093      0.680
+     PARDISC              -0.014       0.238      -2.035    1.79%      -0.956     -0.282     -0.012
+            1568.000       0.984      -0.106       3.359    0.19%       0.257      0.797
+     PARCONT               0.013       0.134      -1.901    2.55%      -0.843     -0.313      0.005
+            1568.000       1.005      -0.581       2.334    1.28%       0.216      0.852
+     PARSOL               -0.008      -0.003      -3.076    0.19%      -0.832     -0.271      0.010
+            1568.000       0.974      -0.149       2.535    0.38%       0.291      0.852
+     SEX                   0.520      -0.082       0.000   47.96%       0.000      0.000      1.000
+            1643.000       0.250      -1.993       1.000   52.04%       1.000      1.000
+     AGE                  -0.002       0.389      -2.386    1.03%      -0.963     -0.963      0.461
+            1643.000       0.997      -0.571       3.308    0.12%       0.461      0.461
+     C1                   -0.008       4.668      -1.078    0.06%      -0.465     -0.274     -0.191
+            1643.000       0.905      26.830       7.970    0.06%      -0.109      0.166
+     C2                    0.022       2.859      -2.219    0.06%      -0.474     -0.148     -0.025
+            1643.000       0.476      22.966       6.647    0.06%       0.130      0.472
+     C3                    0.013       1.629      -5.903    0.06%      -0.553     -0.207     -0.055
+            1643.000       0.918      14.224       7.023    0.06%       0.106      0.443
+     C4                   -0.057       0.941      -2.124    0.06%      -0.639     -0.227     -0.058
+            1643.000       0.502      10.434       8.131    0.06%       0.115      0.503
+     C5                   -0.019       0.059      -2.454    0.06%      -0.591     -0.213     -0.030
+            1643.000       0.490       0.120       2.382    0.06%       0.150      0.562
+     C6                    0.005      -0.118      -4.142    0.06%      -0.601     -0.183      0.001
+            1643.000       0.552       0.839       2.916    0.06%       0.189      0.603
+     C7                   -0.025      -0.193      -3.734    0.06%      -0.657     -0.212      0.011
+            1643.000       0.573       0.440       2.063    0.06%       0.179      0.611
+     C8                   -0.003      -0.185      -4.189    0.06%      -0.653     -0.171      0.009
+            1643.000       0.551       0.518       2.570    0.06%       0.199      0.604
+     C9                    0.017      -0.090      -2.592    0.06%      -0.618     -0.163      0.040
+            1643.000       0.567       0.140       2.719    0.06%       0.202      0.651
+     C10                   0.029       0.029      -3.362    0.06%      -0.601     -0.139      0.032
+            1643.000       0.550       0.542       3.648    0.06%       0.213      0.645
+     PRSCAN                0.012       0.013      -2.828    0.06%      -0.801     -0.246      0.003
+            1643.000       0.979      -0.022       4.235    0.06%       0.248      0.857
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       30
+
+Chi-Square Test of Model Fit
+
+          Value                            148.403*
+          Degrees of Freedom                    54
+          P-Value                           0.0000
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference testing in the regular way.  MLM, MLR and WLSM
+    chi-square difference testing is described on the Mplus website.  MLMV, WLSMV,
+    and ULSMV difference testing is done using the DIFFTEST option.
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.033
+          90 Percent C.I.                    0.026  0.039
+          Probability RMSEA <= .05           1.000
+
+CFI/TLI
+
+          CFI                                0.916
+          TLI                                0.884
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                           1204.872
+          Degrees of Freedom                    75
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.043
+
+Optimum Function Value for Weighted Least-Squares Estimator
+
+          Value                     0.48569483D-01
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ F1INV    BY
+    PARKNOW            1.000      0.000    999.000    999.000
+    PARDISC            1.655      0.146     11.302      0.000
+    PARCONT            1.961      0.178     10.989      0.000
+    PARSOL             2.306      0.213     10.850      0.000
+
+ F1INV    ON
+    SEX                0.202      0.025      8.029      0.000
+    AGE                0.028      0.010      2.896      0.004
+
+ CAN      ON
+    F1INV              0.517      0.137      3.785      0.000
+
+ CAN      ON
+    PRSCAN             0.177      0.036      4.990      0.000
+    SEX                0.052      0.077      0.676      0.499
+    AGE                0.123      0.036      3.446      0.001
+    C1                -0.055      0.040     -1.363      0.173
+    C2                -0.069      0.057     -1.207      0.227
+    C3                 0.017      0.043      0.394      0.694
+    C4                 0.055      0.053      1.047      0.295
+    C5                -0.029      0.053     -0.547      0.584
+    C6                 0.017      0.050      0.342      0.732
+    C7                 0.108      0.048      2.248      0.025
+    C8                -0.103      0.050     -2.064      0.039
+    C9                -0.025      0.049     -0.508      0.611
+    C10                0.079      0.048      1.642      0.101
+
+ PARKNOW  WITH
+    PARDISC            0.156      0.023      6.684      0.000
+
+ Intercepts
+    PARKNOW           -0.028      0.044     -0.627      0.530
+    PARDISC           -0.193      0.035     -5.495      0.000
+    PARCONT           -0.246      0.035     -6.938      0.000
+    PARSOL            -0.248      0.036     -6.986      0.000
+
+ Thresholds
+    CAN$1             -0.156      0.050     -3.120      0.002
+
+ Residual Variances
+    PARKNOW            0.844      0.032     26.373      0.000
+    PARDISC            0.677      0.029     23.408      0.000
+    PARCONT            0.551      0.030     18.147      0.000
+    PARSOL             0.403      0.032     12.615      0.000
+    F1INV              0.096      0.016      5.955      0.000
+
+
+STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ F1INV    BY
+    PARKNOW            0.336      0.026     12.937      0.000
+    PARDISC            0.551      0.023     24.237      0.000
+    PARCONT            0.655      0.023     28.306      0.000
+    PARSOL             0.766      0.022     35.464      0.000
+
+ F1INV    ON
+    SEX                0.308      0.028     11.098      0.000
+    AGE                0.085      0.029      2.992      0.003
+
+ CAN      ON
+    F1INV              0.163      0.043      3.822      0.000
+
+ CAN      ON
+    PRSCAN             0.169      0.033      5.110      0.000
+    SEX                0.025      0.037      0.677      0.498
+    AGE                0.118      0.034      3.492      0.000
+    C1                -0.050      0.037     -1.365      0.172
+    C2                -0.046      0.038     -1.209      0.227
+    C3                 0.016      0.040      0.394      0.694
+    C4                 0.038      0.036      1.048      0.295
+    C5                -0.020      0.036     -0.547      0.584
+    C6                 0.012      0.036      0.342      0.732
+    C7                 0.079      0.035      2.259      0.024
+    C8                -0.073      0.035     -2.075      0.038
+    C9                -0.018      0.036     -0.508      0.611
+    C10                0.057      0.034      1.646      0.100
+
+ PARKNOW  WITH
+    PARDISC            0.206      0.028      7.388      0.000
+
+ Intercepts
+    PARKNOW           -0.028      0.045     -0.632      0.528
+    PARDISC           -0.196      0.035     -5.641      0.000
+    PARCONT           -0.251      0.035     -7.172      0.000
+    PARSOL            -0.252      0.035     -7.121      0.000
+
+ Thresholds
+    CAN$1             -0.150      0.048     -3.101      0.002
+
+ Residual Variances
+    PARKNOW            0.887      0.017     50.800      0.000
+    PARDISC            0.697      0.025     27.859      0.000
+    PARCONT            0.571      0.030     18.874      0.000
+    PARSOL             0.413      0.033     12.496      0.000
+    F1INV              0.894      0.018     49.656      0.000
+
+
+R-SQUARE
+
+    Observed                                        Two-Tailed   Residual
+    Variable        Estimate       S.E.  Est./S.E.    P-Value    Variance
+
+    PARKNOW            0.113      0.017      6.469      0.000
+    PARDISC            0.303      0.025     12.118      0.000
+    PARCONT            0.429      0.030     14.153      0.000
+    PARSOL             0.587      0.033     17.732      0.000
+    CAN                0.098      0.021      4.676      0.000      0.974
+
+     Latent                                         Two-Tailed
+    Variable        Estimate       S.E.  Est./S.E.    P-Value
+
+    F1INV              0.106      0.018      5.876      0.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.908E-04
+       (ratio of smallest to largest eigenvalue)
+
+
+CONFIDENCE INTERVALS OF MODEL RESULTS
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+ F1INV    BY
+    PARKNOW          1.000       1.000       1.000       1.000       1.000       1.000       1.000
+    PARDISC          1.278       1.368       1.414       1.655       1.896       1.942       2.033
+    PARCONT          1.501       1.611       1.667       1.961       2.255       2.311       2.421
+    PARSOL           1.759       1.890       1.957       2.306       2.656       2.723       2.854
+
+ F1INV    ON
+    SEX              0.137       0.153       0.160       0.202       0.243       0.251       0.267
+    AGE              0.003       0.009       0.012       0.028       0.044       0.047       0.053
+
+ CAN      ON
+    F1INV            0.165       0.249       0.292       0.517       0.742       0.785       0.869
+
+ CAN      ON
+    PRSCAN           0.086       0.108       0.119       0.177       0.236       0.247       0.269
+    SEX             -0.146      -0.099      -0.074       0.052       0.178       0.202       0.250
+    AGE              0.031       0.053       0.064       0.123       0.182       0.193       0.215
+    C1              -0.158      -0.133      -0.120      -0.055       0.011       0.024       0.049
+    C2              -0.216      -0.181      -0.163      -0.069       0.025       0.043       0.078
+    C3              -0.094      -0.068      -0.054       0.017       0.088       0.102       0.128
+    C4              -0.081      -0.048      -0.032       0.055       0.142       0.159       0.191
+    C5              -0.167      -0.134      -0.117      -0.029       0.059       0.076       0.108
+    C6              -0.111      -0.081      -0.065       0.017       0.099       0.115       0.146
+    C7              -0.016       0.014       0.029       0.108       0.187       0.203       0.232
+    C8              -0.231      -0.200      -0.185      -0.103      -0.021      -0.005       0.025
+    C9              -0.152      -0.121      -0.106      -0.025       0.056       0.071       0.102
+    C10             -0.045      -0.015       0.000       0.079       0.159       0.174       0.204
+
+ PARKNOW  WITH
+    PARDISC          0.096       0.110       0.118       0.156       0.195       0.202       0.216
+
+ Intercepts
+    PARKNOW         -0.141      -0.114      -0.100      -0.028       0.045       0.059       0.086
+    PARDISC         -0.283      -0.262      -0.251      -0.193      -0.135      -0.124      -0.102
+    PARCONT         -0.337      -0.316      -0.304      -0.246      -0.188      -0.177      -0.155
+    PARSOL          -0.340      -0.318      -0.307      -0.248      -0.190      -0.179      -0.157
+
+ Thresholds
+    CAN$1           -0.285      -0.254      -0.238      -0.156      -0.074      -0.058      -0.027
+
+ Residual Variances
+    PARKNOW          0.762       0.782       0.792       0.844       0.897       0.907       0.927
+    PARDISC          0.603       0.621       0.630       0.677       0.725       0.734       0.752
+    PARCONT          0.473       0.492       0.501       0.551       0.601       0.611       0.630
+    PARSOL           0.321       0.340       0.350       0.403       0.456       0.466       0.485
+    F1INV            0.055       0.065       0.070       0.096       0.123       0.128       0.138
+
+
+CONFIDENCE INTERVALS OF STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+ F1INV    BY
+    PARKNOW          0.269       0.285       0.293       0.336       0.379       0.387       0.403
+    PARDISC          0.492       0.506       0.513       0.551       0.588       0.595       0.609
+    PARCONT          0.595       0.609       0.617       0.655       0.693       0.700       0.714
+    PARSOL           0.710       0.724       0.730       0.766       0.801       0.808       0.822
+
+ F1INV    ON
+    SEX              0.236       0.253       0.262       0.308       0.353       0.362       0.379
+    AGE              0.012       0.029       0.038       0.085       0.132       0.141       0.159
+
+ CAN      ON
+    F1INV            0.053       0.079       0.093       0.163       0.233       0.247       0.273
+
+ CAN      ON
+    PRSCAN           0.084       0.104       0.114       0.169       0.223       0.233       0.254
+    SEX             -0.070      -0.047      -0.036       0.025       0.086       0.097       0.120
+    AGE              0.031       0.052       0.063       0.118       0.174       0.185       0.206
+    C1              -0.144      -0.122      -0.110      -0.050       0.010       0.022       0.044
+    C2              -0.143      -0.120      -0.108      -0.046       0.017       0.028       0.052
+    C3              -0.087      -0.062      -0.050       0.016       0.081       0.094       0.118
+    C4              -0.055      -0.033      -0.021       0.038       0.097       0.108       0.130
+    C5              -0.112      -0.090      -0.079      -0.020       0.040       0.051       0.073
+    C6              -0.080      -0.058      -0.046       0.012       0.071       0.082       0.104
+    C7              -0.011       0.010       0.021       0.079       0.136       0.147       0.169
+    C8              -0.165      -0.143      -0.132      -0.073      -0.015      -0.004       0.018
+    C9              -0.110      -0.088      -0.077      -0.018       0.041       0.052       0.074
+    C10             -0.032      -0.011       0.000       0.057       0.113       0.124       0.145
+
+ PARKNOW  WITH
+    PARDISC          0.134       0.152       0.160       0.206       0.252       0.261       0.278
+
+ Intercepts
+    PARKNOW         -0.143      -0.116      -0.102      -0.028       0.045       0.059       0.087
+    PARDISC         -0.285      -0.264      -0.253      -0.196      -0.139      -0.128      -0.106
+    PARCONT         -0.341      -0.319      -0.308      -0.251      -0.193      -0.182      -0.161
+    PARSOL          -0.343      -0.321      -0.310      -0.252      -0.194      -0.182      -0.161
+
+ Thresholds
+    CAN$1           -0.274      -0.245      -0.229      -0.150      -0.070      -0.055      -0.025
+
+ Residual Variances
+    PARKNOW          0.842       0.853       0.858       0.887       0.916       0.921       0.932
+    PARDISC          0.632       0.648       0.656       0.697       0.738       0.746       0.761
+    PARCONT          0.493       0.512       0.522       0.571       0.621       0.631       0.649
+    PARSOL           0.328       0.349       0.359       0.413       0.468       0.478       0.499
+    F1INV            0.848       0.859       0.865       0.894       0.924       0.929       0.941
+
+
+MODEL MODIFICATION INDICES
+
+NOTE:  Modification indices for direct effects of observed dependent variables
+regressed on covariates and residual covariances among observed dependent
+variables may not be included.  To include these, request MODINDICES (ALL).
+
+Minimum M.I. value for printing the modification index    10.000
+
+                                   M.I.     E.P.C.  Std E.P.C.  StdYX E.P.C.
+
+WITH Statements
+
+PARCONT  WITH PARDISC             16.427    -0.186     -0.186       -0.305
+
+
+DIAGRAM INFORMATION
+
+  Use View Diagram under the Diagram menu in the Mplus Editor to view the diagram.
+  If running Mplus from the Mplus Diagrammer, the diagram opens automatically.
+
+  Diagram output
+    \\cnas.ru.nl\u642157\documents\6 trails\results\can\can_f1inv_1maineffects_wlsmv.dgm
+
+     Beginning Time:  15:38:12
+        Ending Time:  15:38:13
+       Elapsed Time:  00:00:01
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2019 Muthen & Muthen
