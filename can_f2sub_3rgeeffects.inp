@@ -1,0 +1,34 @@
+  DATA:   
+       FILE IS  \\CNAS.RU.NL\U642157\Documents\6 TRAILS\datasets\full.csv;
+
+  VARIABLE:
+       NAMES ARE sex age C1 C2 C3 C4 C5 C6 C7 C8 C9 C10 
+       parknow pardisc parcont parsol rel_rej rel_warm 
+       parsmk parcpd paralc paraddep parcan 
+       prssmcpd prsalc prscan 
+       eversmk dailysmk cpd ftnd alc alcmonth audit can cupit1 cupit2 ;
+       MISSING * ;
+       USEVARIABLES sex age C1 C2 C3 C4 C5 C6 C7 C8 C9 C10 
+       parsmk paraddep parcan 
+       prscan
+       can ;
+       CATEGORICAL ARE parsmk paraddep parcan can ;
+  
+    ANALYSIS: estimator=MLR ;
+
+    MODEL:
+       !Latent factors parenting
+       F2sub BY parsmk paraddep parcan ;
+
+       !Main effects 
+       can ON F2sub prscan ;
+       can ON sex age C1 C2 C3 C4 C5 C6 C7 C8 C9 C10 ;     
+       
+       !rGE
+       F2sub ON prscan ;
+
+       F2sub ON sex age ;    
+
+     OUTPUT: 
+       SAMPSTAT CINTERVAL stdyx ;
+        
